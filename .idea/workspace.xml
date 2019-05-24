@@ -1,7 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f932edb9-b1cc-4941-910a-9a93c33b1375" name="Default Changelist" comment="" />
+    <list default="true" id="f932edb9-b1cc-4941-910a-9a93c33b1375" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/functions/compare_snapshots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/functions/create_alert.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/functions/diff2HtmlCompare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/functions/get_snapshots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/runner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/monokai.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/vs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/xcode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/diff.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/diff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/visjs/vis-timeline-graph2d.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/visjs/vis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/templates/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/templates/diff_fullpage_local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/templates/show_diff.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/templates/test_reply (copy).html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/templates/test_reply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkweb/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/local.RENAME.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/wsgi.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,10 +151,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1938">
+                <state relative-caret-position="1252">
                   <caret line="126" column="24" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
@@ -94,15 +164,6 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/project/local.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" column="13" selection-start-line="6" selection-end-line="6" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project/local.RENAME.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="68">
@@ -191,6 +252,9 @@
       <find>static</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -218,6 +282,7 @@
     <option name="width" value="1671" />
     <option name="height" value="941" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -239,6 +304,12 @@
             <path>
               <item name="master" type="b2602c69:ProjectViewProjectNode" />
               <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="checkweb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
               <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -248,6 +319,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -278,7 +350,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="-2" width="2509" height="1442" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.098445594" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -387,16 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="126" column="24" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/checkweb/functions/diff2HtmlCompare.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6426">
@@ -454,6 +515,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project/local.RENAME.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/local.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -461,10 +529,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/local.RENAME.py">
+    <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="1252">
+          <caret line="126" column="24" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

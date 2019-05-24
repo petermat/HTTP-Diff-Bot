@@ -1,73 +1,54 @@
-# Project CheckWeb
+# HTTP-Diff-Bot
 
-CheckWeb is Django App with schedulled web browsing funtionality
+HTTP-Diff-Bot is Django powered application to compare and alert on changes of HTTP and HTML responses.
+Insert URL or Domain and receive email every time a change is observed.
 
+Features:
+	- Alert on change of HTTP status code (200 -> 404)
+	- Alert on change of HTML content within defined thresholds
+	- Show side-by-side comparison of HTML changes between last snapshots
+	- Show dashboard with taken snapshots and raised alerts
 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+- OS: Linux (referred), OS X or Windows
+- Python >= 3.6
+- Apache/Nginx  (Production Deployment only)
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+- VENV
 
-Say what the step will be
+- pip install -r requirements
 
-```
-Give the example
-```
+## Production Deployment
 
-And repeat
+- Always generate new SECRET_KEY!
+	Run command: `python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'` and replace SECRET_KEY value in `project/settings.py`.
 
-```
-until finished
-```
+- Reverse proxy for production environment
 
-End with an example of getting some data out of the system or using it for a little demo
+- CRON
 
 ## Getting Started
 
+Rename file `project/local.RENAME.py` to `local.py` and edit `ALLOWED_HOSTS` and SMTP settings
 
+Initial database structure
+	`python manage.py makemigrations checkweb`
+	`python manage.py migrate`
 
 To fill project with test data run following:
 	`python manage.py hopper`
 
+Application is now ready to run
+
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Tests not implemented yet.
 
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
