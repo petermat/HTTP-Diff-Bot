@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>HTTP-Diff-Bot Dashboard</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+
+  <!-- Load jquery for ajax support -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="{% static 'vendor/visjs/vis.js' %}" ></script>
+  <link href="{% static "vendor/visjs/vis-timeline-graph2d.min.css" %}" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">HTTP-Diff-Bot Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Repository</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container mt-3">
+
+
+    <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Monitored URLs</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ monitored_urls }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-info h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Active / Disabled URLs</div>
+                          <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ active_disabled_urls }}%</div>
+                            </div>
+                            <div class="col">
+                              <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ active_disabled_urls }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-success h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Snapshots 24h / 7d</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{snapshots_24_7.0}} / {{snapshots_24_7.1}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-warning h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alerts 24h / 7d</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{alerts_24_7.0}} / {{alerts_24_7.1}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+    <div class="row">
+      <div class="col-xl">
+        <div class="card">
+          <h5 class="card-header">Events</h5>
+          <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+
+            <div id="visualization"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="row mt-2">
+      <div class="col-xl">
+        <div class="card">
+          <h5 class="card-header">Raised Alerts - last 7d</h5>
+          <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+
+              <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Domain</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody>{% for alert_qs in alerts_qs %}
+                <tr>
+                  <th scope="row">{{ alert_qs.created }}</th>
+                  <td>{{ alert_qs.watchurl.domain }}</td>
+                  <td>{{ alert_qs.message_short }}</td>
+                </tr>{% endfor %}
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- container -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static "vendor/jquery/jquery.slim.min.js" %}"></script>
+  <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+
+  <script>
+    var now = moment().minutes(0).seconds(0).milliseconds(0);
+    var groupCount = 3;
+    var itemCount = 2;
+
+    // create a data set with groups
+    var names = ['John', 'Alston', 'Lee', 'Grant','g1'];
+    var groups = new vis.DataSet();
+    //for (var g = 0; g < groupCount; g++) {
+    //  groups.add({id: g, content: names[g]});
+    //}
+    groups.add([
+                {% for group_key, group_value in group_dict.items %}
+                  {id: {{ group_key }}, content: '{{ group_value | safe }}'},
+                {% endfor %}
+                ]);
+    // create a dataset with items
+    var items = new vis.DataSet();
+    //for (var i = 0; i < itemCount; i++) {
+    //  var start = now.clone().add(Math.random() * 200, 'hours');
+    //  var group = Math.floor(Math.random() * groupCount);
+    //  console.log(start,group );
+
+    //  items.add({
+    //    id: i,
+    //    group: group,
+    //    content: 'item ' + i +
+    //        ' <span style="color:#97B0F8;">(' + names[group] + ')</span>',
+    //    start: start,
+    //    type: 'box'
+    //  });
+    //}
+
+    //items.add(
+    //[{id: 1000, group:11, content: 'item x1<br>start', start: '2018-01-23 12:22:22', type:'box'},
+    //{id: 2000, group:11, content: 'item x2', start: '2018-01-18', type:'box'},
+    //{id: 5000, group:99, content: 'item x5', start: '2018-01-28', type:'point'},
+    //]);
+
+    items.add([{% for eventg in event_graph_dctlst %}
+      {id: {{ eventg.id }},
+      group:{{ eventg.group }},
+      content: '{{ eventg.content }}',
+      start: '{{ eventg.start }}',
+      type:'{{ eventg.type }}'},
+    {% endfor %}]);
+
+
+    // create visualization
+    var container = document.getElementById('visualization');
+    var today = new Date(new Date().setHours(0,0,0,0));
+    var lastweek = new Date(today.getTime() - 4 * 24 * 60 * 60 * 1000);
+
+    var options = {
+      groupOrder: 'content',  // groupOrder can be a property name or a sorting function
+      //in: new Date(2018, 1, 5),
+      //max: new Date(2019, 1, 11),
+      zoomMax: 1000 * 60 * 60 * 24*31*3,
+      start:lastweek,
+      end:today
+    };
+
+    var timeline = new vis.Timeline(container);
+    timeline.setOptions(options);
+    timeline.setGroups(groups);
+    timeline.setItems(items);
+
+  </script>
+
+
+
+
+</body>
+
+</html>
