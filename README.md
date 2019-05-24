@@ -14,22 +14,56 @@ Features:
 
 - OS: Linux (referred), OS X or Windows
 - Python >= 3.6
-- Apache/Nginx  (Production Deployment only)
+- Apache/Nginx  (Production Deployment Only)
 
 ### Installing
 
-- VENV
+- Install system packages
+	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor `
 
-- pip install -r requirements
+- Get package
+	`git clone git@github.com:petermat/HTTP-Diff-Bot.git`
 
-## Production Deployment
+- Configure Python Virtual environment
+	`virtualenv -p python3.6 venv`
+	`source venv/bin/activate`
+	`cd HTTP-Diff-Bot`
+	`pip install -r requirements.txt`
+
+## Production Deployment - skip if running in debug local server mode
 
 - Always generate new SECRET_KEY!
 	Run command: `python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'` and replace SECRET_KEY value in `project/settings.py`.
 
-- Reverse proxy for production environment
+- Reverse Apache proxy for production environment. Configure `/etc/apace2/site-available/000-default.conf`:
 
-- CRON
+	```
+	WSGIScriptAlias / /home/user/HTTP-Diff-Bot/project/wsgi.py
+	WSGIDaemonProcess servername python-home=/home/user/venv python-path=/home/user/HTTP-Diff-Bot
+	WSGIProcessGroup servername
+
+	<Directory /home/user/HTTP-Diff-Bot/project/project/>
+					<Files wsgi.py>
+								 Order deny,allow
+								 Allow from all
+					</Files>
+	</Directory>
+
+	<Directory /home/user/HTTP-Diff-Bot/project/ >
+					Options Indexes FollowSymLinks
+					Require all granted
+	</Directory>
+
+	```
+- Add user to www-data group
+	`sudo usermod -a -G www-data myuser`
+
+- Collect static files for Web Server
+
+	`python manage.py collectstatic`
+
+- add CRON entry for scheduled run
+	`* */6 * * * /var/path/to/venv/bin/python /var/path/to/my/app/manage.py process_emails`
 
 ## Getting Started
 
@@ -39,10 +73,15 @@ Initial database structure
 	`python manage.py makemigrations checkweb`
 	`python manage.py migrate`
 
+Create system Superuser
+	`python manage.py create superuser`
+
+
 To fill project with test data run following:
 	`python manage.py hopper`
 
-Application is now ready to run
+Application is now ready to run - try local debug mode
+	`python manage.py runserver`
 
 ## Running the tests
 

@@ -2,75 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f932edb9-b1cc-4941-910a-9a93c33b1375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/master.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/functions/compare_snapshots.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/functions/create_alert.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/functions/diff2HtmlCompare.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/functions/get_snapshots.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/management/commands/runner.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/monokai.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/vs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/codeformats/xcode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/diff.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/diff.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/diff2HtmlCompare/reset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/jquery/jquery.slim.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/visjs/vis-timeline-graph2d.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/static/vendor/visjs/vis.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/templates/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/templates/diff_fullpage_local.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/templates/show_diff.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/templates/test_reply (copy).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/templates/test_reply.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checkweb/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/local.RENAME.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +32,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/project/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
+                <state relative-caret-position="68">
                   <caret line="22" column="10" selection-start-line="22" selection-end-line="22" selection-end-column="10" />
                 </state>
               </provider>
@@ -115,11 +50,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/checkweb/functions/compare_snapshots.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2074">
-                  <caret line="131" column="49" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+                <state relative-caret-position="672">
+                  <caret line="88" column="42" lean-forward="true" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
                   </folding>
@@ -151,10 +86,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1252">
+                <state relative-caret-position="1864">
                   <caret line="126" column="24" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
@@ -176,7 +111,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/models.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="266">
@@ -203,7 +138,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/management/commands/runner.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
+                <state relative-caret-position="663">
                   <caret line="39" selection-start-line="39" selection-end-line="39" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
@@ -215,10 +150,21 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/management/commands/hopper.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1428">
-                  <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
+                <state relative-caret-position="1403">
+                  <caret line="83" column="41" lean-forward="true" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/project/wsgi.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <folding>
+                    <element signature="e#223#232#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -264,7 +210,6 @@
         <option value="$PROJECT_DIR$/checkweb/functions/diff2HtmlCompare.py" />
         <option value="$PROJECT_DIR$/checkweb/functions/create_alert.py" />
         <option value="$PROJECT_DIR$/project/settings.py" />
-        <option value="$PROJECT_DIR$/checkweb/management/commands/hopper.py" />
         <option value="$PROJECT_DIR$/checkweb/management/commands/runner.py" />
         <option value="$PROJECT_DIR$/checkweb/functions/get_snapshots.py" />
         <option value="$PROJECT_DIR$/checkweb/models.py" />
@@ -274,6 +219,7 @@
         <option value="$PROJECT_DIR$/project/urls.py" />
         <option value="$PROJECT_DIR$/checkweb/views.py" />
         <option value="$PROJECT_DIR$/project/local.RENAME.py" />
+        <option value="$PROJECT_DIR$/checkweb/management/commands/hopper.py" />
       </list>
     </option>
   </component>
@@ -305,7 +251,7 @@
               <item name="master" type="b2602c69:ProjectViewProjectNode" />
               <item name="master" type="462c0819:PsiDirectoryNode" />
               <item name="checkweb" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="functions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="master" type="b2602c69:ProjectViewProjectNode" />
@@ -350,6 +296,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="-2" width="2509" height="1442" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.098445594" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -438,16 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/functions/compare_snapshots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="131" column="49" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -464,26 +401,6 @@
           <caret line="388" column="26" selection-start-line="388" selection-start-column="13" selection-end-line="388" selection-end-column="26" />
           <folding>
             <element signature="e#1108#1117#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/management/commands/runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/management/commands/hopper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -508,13 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="10" selection-start-line="22" selection-end-line="22" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/local.RENAME.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -531,10 +441,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1252">
+        <state relative-caret-position="1864">
           <caret line="126" column="24" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="24" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkweb/management/commands/runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkweb/management/commands/hopper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1403">
+          <caret line="83" column="41" lean-forward="true" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#223#232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="22" column="10" selection-start-line="22" selection-end-line="22" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkweb/functions/compare_snapshots.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="88" column="42" lean-forward="true" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

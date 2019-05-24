@@ -84,7 +84,7 @@ class Command(BaseCommand):
             active_discover_urls = False,
             active_tor_proxy = False,
         )
-        print("DEBUG: test_reply1 created")
+        print("DEBUG: test_reply2 created")
 
 
         print("INFO: Hopper DONE")
