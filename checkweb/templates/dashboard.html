@@ -167,7 +167,7 @@
               <tbody>{% for alert_qs in alerts_qs %}
                 <tr>
                   <th scope="row">{{ alert_qs.created }}</th>
-                  <td>{{ alert_qs.watchurl.domain }}</td>
+                  <td>{{ alert_qs.snapshot_current.access_url }}</td>
                   <td>{{ alert_qs.message_short }}</td>
                 </tr>{% endfor %}
               </tbody>

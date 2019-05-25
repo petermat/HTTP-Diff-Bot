@@ -60,7 +60,7 @@ def dashboard(request):
 
     for alert_event in Alert.objects.filter(watchurl__active_monitor=True).order_by("-created"):
         event_graph_dctlst.append({'id':id_counter,
-                                   'group':list(group_dict.keys())[list(group_dict.values()).index(snaps_event.access_url)],
+                                   'group':list(group_dict.keys())[list(group_dict.values()).index(alert_event.snapshot_current.access_url)],
                                    'content':'Alert: {}'.format(alert_event.message_short),
                                    'start': alert_event.created.strftime("%Y-%m-%d %H:%M:%S"),
                                    'type': 'point'
@@ -88,38 +88,6 @@ def list_of_alerts():
     return None
 
 ### detail views ###
-
-# html diff comparing current snapshot and previous one
-def htmldiffview2(request):
-    #snapshot_obj = Snapshot.objects.latest('id')
-
-    #prev_snapshot = Snapshot.objects \
-    #    .filter(watchurl=snapshot_obj.watchurl) \
-    #    .exclude(id=snapshot_obj.watchurl.id) \
-    #    .order_by('id').first()
-    if request.GET.get('id'):
-
-        if Snapshot.objects.filter(id=request.GET.get('id')):
-            if int(request.GET.get('id')) != Snapshot.objects.filter(watchurl=Snapshot.objects.get(id=request.GET.get('id')).watchurl).last().id:
-                comparator_obj = Comparator(snapshot_obj=Snapshot.objects.get(id=request.GET.get('id')))
-                retrieved_fromDiff = comparator_obj.generate_diff_file()
-
-                template = loader.get_template('diff_fullpage_local.html')
-                context = {
-                            'original_code':retrieved_fromDiff.get('original_code'),
-                            'modified_code':retrieved_fromDiff.get('modified_code')
-                            }
-
-                return HttpResponse(template.render(context, request))
-            else:
-                return HttpResponse("First snapshot only, nothing to compare to", status=404)
-        else:
-            return HttpResponse("ERROR: NO SNAPSHOT ID",status=404)
-
-
-    else:
-        return HttpResponse("ERROR: NO SNAPSHOT ID",status=500)
-
 
 def htmldiffview(request):
     comparator_obj = Comparator(snapshot_obj=Snapshot.objects.get(id=request.GET.get('id')))

@@ -1,11 +1,13 @@
 from checkweb.models import *
+from django.contrib.auth.models import User
 from django.utils import timezone
 from difflib import SequenceMatcher
 from django.core.mail import send_mail
 from django.conf import settings
 
-from checkweb.functions import diff2HtmlCompare, create_alert
-
+#3rt party
+from prettytable import PrettyTable
+from bs4 import BeautifulSoup
 
 import django
 django.setup()
@@ -21,7 +23,7 @@ class Comparator:
 
         # load previous snapshot, if not found terminate
         self.prev_snapshot = Snapshot.objects\
-            .filter(watchurl=self.snapshot_obj.watchurl.id)\
+            .filter(access_url=self.snapshot_obj.access_url)\
             .exclude(id=self.snapshot_obj.id)\
             .order_by('id').last()
 
@@ -58,24 +60,6 @@ class Comparator:
             self.diff_content_int = 0
             self.diff_meta_dict = dict()
 
-    # OBSOLETTE
-    # main function - front-end
-    """
-    def generate_diff_file_old(self):
-        if not self.prev_snapshot:
-            print("[Comparator] ERROR: Previous snapshot not found, comparison skipped")
-            return 0
-
-        code_diff = diff2HtmlCompare.main(self.prev_snapshot.html_dump.path,
-                                          self.snapshot_obj.html_dump.path,
-                                          'index.html', None)
-        print('DEBUG: Frontend:HTMLDiff comparing shapshots {} and {}'.format(
-            self.prev_snapshot.id,
-            self.snapshot_obj.id
-        ))
-        return code_diff
-    """
-
     # main function - front-end
     def generate_diff_file(self):
         import subprocess
@@ -93,18 +77,32 @@ class Comparator:
             self.prev_snapshot.id,
             self.snapshot_obj.id
         ))
-        return stdout.decode('utf-8')
+        soup = BeautifulSoup(stdout.decode('utf-8'))
+        head_tag = soup.find('h1')
+        #head_tag.name = 'h2'
+        head_tag.string = 'Alert on changes: {}'.format(self.snapshot_obj.access_url)
+
+        return soup.prettify()
 
 
 
     # not for direct use
     def generate_alert_object(self,alert_on_content_change=False, alert_on_meta_change=False):
         message_verbose,message_short = "",None
+
+        metachange_html=None
+        if alert_on_meta_change:
+            x = PrettyTable()
+            x.field_names = ["Changed field", "Previous value", "Current Value"]
+            for part_dict in self.diff_meta_dict.items():
+                x.add_row([part_dict[0], part_dict[1].get('previous'),part_dict[1].get('current')])
+            metachange_html = x.get_html_string()
+
         if alert_on_content_change and alert_on_meta_change:
             # multi alert
             message_short = "Change in content of ({}% from {}) and metadata: {}".format(
                 self.diff_content_int, self.snapshot_obj.html_dump_size_readable(),str(self.diff_meta_dict))
-            message_verbose = "" # todo
+            message_verbose = metachange_html + self.generate_diff_file()
         else:
             if alert_on_content_change:
                 # sinle alert - change of content
@@ -114,7 +112,7 @@ class Comparator:
             if alert_on_meta_change:
                 # single alert - change of meta
                 message_short= "Change in metadata: {}".format(str(self.diff_meta_dict))
-                message_verbose = "" # todo
+                message_verbose = metachange_html
 
         alert_obj = Alert(snapshot_current=self.snapshot_obj,
                           snapshot_previous=self.prev_snapshot,
@@ -126,13 +124,15 @@ class Comparator:
         if alert_obj:
             print("\t[Comparator] DEBUG: Alert saved. message_short: {}".format(message_short))
 
-            # todo: send email
             if self.snapshot_obj.watchurl.active_email_alert:
-                send_mail(subject=self.snapshot_obj.watchurl.domain+': '+message_short,# Subject here'
-                          message='where is html?',
-                          html_message=self.generate_diff_file(),#Here is the message
+
+                send_mail(subject="Domain Monitor Alert ["+self.snapshot_obj.access_url+']: '+message_short,# Subject here'
+                          message='message is in html not plain, something wrong',
+                          html_message=message_verbose,#self.generate_diff_file(),#Here is the message
                           from_email=getattr(settings,'DEFAULT_FROM_EMAIL', None), # From
-                          recipient_list=['p.matkovski@gmail.com'], fail_silently=False)
+                          recipient_list=[value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
+                          fail_silently=not settings.DEBUG)
+
 
     # main function - backend
     def compare_and_alert(self):

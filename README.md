@@ -9,6 +9,8 @@ Features:
 	- Show side-by-side comparison of HTML changes between last snapshots
 	- Show dashboard with taken snapshots and raised alerts
 
+Screenshot - front-end dashboard
+![alt text](screenshot_frontend.png)
 
 ### Prerequisites
 
@@ -20,6 +22,9 @@ Features:
 
 - Install system packages
 	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor `
+
+- Install Ruby Diff library
+	`sudo gem install diff-lcs`
 
 - Get package
 	`git clone git@github.com:petermat/HTTP-Diff-Bot.git`
@@ -59,11 +64,10 @@ Features:
 	`sudo usermod -a -G www-data myuser`
 
 - Collect static files for Web Server
-
 	`python manage.py collectstatic`
 
 - add CRON entry for scheduled run
-	`* */6 * * * /var/path/to/venv/bin/python /var/path/to/my/app/manage.py process_emails`
+	`* */6 * * * /home/myuser/venv/bin/python /home/myuser/manage.py runner`
 
 ## Getting Started
 
@@ -75,7 +79,6 @@ Initial database structure
 
 Create system Superuser
 	`python manage.py create superuser`
-
 
 To fill project with test data run following:
 	`python manage.py hopper`
