@@ -21,6 +21,7 @@ Screenshot - front-end dashboard
 - OS: Linux (referred), OS X or Windows
 - Python >= 3.6
 - Apache/Nginx  (Production Deployment Only)
+- [Ruby diff-lcs library](https://rubygems.org/gems/diff-lcs)
 
 ### Installing
 
