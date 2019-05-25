@@ -5,10 +5,13 @@ Insert URL or Domain and receive email every time a change is observed.
 
 Features:
 
-	- Alert on change of HTTP status code (200 -> 404)
-	- Alert on change of HTML content within defined thresholds
-	- Show side-by-side comparison of HTML changes between last snapshots
-	- Show dashboard with taken snapshots and raised alerts
+- Alerts following changes:
+	- HTTP status code, example 200 -> 404
+  - IP Address resolved for domain, example 192.168.1.2 -> 192.168.1.2
+- Alert on change of HTML content within defined thresholds
+- Show side-by-side comparison of HTML changes between last snapshots
+- Show dashboard of snapshots and raised alerts
+
 
 Screenshot - front-end dashboard
 ![alt text](screenshot_frontend.png)
