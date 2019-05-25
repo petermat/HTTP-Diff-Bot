@@ -1,14 +1,14 @@
 # HTTP-Diff-Bot
 
 HTTP-Diff-Bot is Django powered application to compare and alert on changes of HTTP and HTML responses.
-Insert URL or Domain and receive email every time a change is observed.
+Define URL or Domain to monitor and receive email every time a change is observed.
 
 Features:
 
-- Alerts following changes:
+- Alerts by Email on following changes:
 	- HTTP status code, example 200 -> 404
   - IP Address resolved for domain, example 192.168.1.2 -> 192.168.1.2
-- Alert on change of HTML content within defined thresholds
+	- HTML content (within defined threshold)
 - Show side-by-side comparison of HTML changes between last snapshots
 - Show dashboard of snapshots and raised alerts
 
