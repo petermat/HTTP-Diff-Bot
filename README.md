@@ -86,7 +86,7 @@ Screenshot - front-end dashboard
 
 - add CRON entry for scheduled run
 
-	`* */6 * * * /home/myuser/venv/bin/python /home/myuser/manage.py runner`
+	`0 */4 * * * /home/myuser/venv/bin/python /home/myuser/manage.py runner`
 
 
 ## Getting Started
