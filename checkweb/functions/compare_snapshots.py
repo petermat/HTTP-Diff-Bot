@@ -122,7 +122,8 @@ class Comparator:
         alert_obj.save()
 
         if alert_obj:
-            print("\t[Comparator] DEBUG: Alert {} saved. message_short: {}".format(alert_obj.id,message_short))
+            print("\t[Comparator] DEBUG: Alert {} from Snapshot {} saved. message_short: {}".format(
+                alert_obj.id,self.snapshot_obj.id,message_short))
 
             if self.snapshot_obj.watchurl.active_email_alert:
 
