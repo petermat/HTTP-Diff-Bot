@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f932edb9-b1cc-4941-910a-9a93c33b1375" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkweb/management/commands/hopper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkweb/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkweb/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,8 +92,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/checkweb/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="910">
-                  <caret line="79" column="51" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="51" />
+                <state relative-caret-position="417">
+                  <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
                   <folding>
                     <element signature="e#0#35#0" expanded="true" />
                   </folding>
@@ -224,9 +222,9 @@
         <option value="$PROJECT_DIR$/project/local.RENAME.py" />
         <option value="$PROJECT_DIR$/project/local.py" />
         <option value="$PROJECT_DIR$/project/settings.py" />
-        <option value="$PROJECT_DIR$/checkweb/views.py" />
         <option value="$PROJECT_DIR$/checkweb/functions/compare_snapshots.py" />
         <option value="$PROJECT_DIR$/checkweb/management/commands/hopper.py" />
+        <option value="$PROJECT_DIR$/checkweb/views.py" />
       </list>
     </option>
   </component>
@@ -503,8 +501,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/checkweb/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="79" column="51" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="51" />
+        <state relative-caret-position="417">
+          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

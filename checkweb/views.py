@@ -51,7 +51,7 @@ def dashboard(request):
     for snaps_event in Snapshot.objects.filter(watchurl__active_monitor=True).order_by("-created"):
         event_graph_dctlst.append({'id':id_counter,
                                    'group':list(group_dict.keys())[list(group_dict.values()).index(snaps_event.access_url)],
-                                   'content':'SNAP Resp: {}, Size: {}'.format(snaps_event.http_status_last,
+                                   'content':'{} ({})'.format(snaps_event.http_status_last,
                                                                             snaps_event.html_dump_size_readable()),
                                    'start': snaps_event.created.strftime("%Y-%m-%d %H:%M:%S"),
                                    'type': 'box'
