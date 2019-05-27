@@ -236,7 +236,8 @@
 
     // create visualization
     var container = document.getElementById('visualization');
-    var today = new Date(new Date().setHours(0,0,0,0));
+    var today = new Date(new Date().setHours(24,0,0,0));
+    //var today = new Date(new Date().setHours(12,0,0,0));
     var lastweek = new Date(today.getTime() - 4 * 24 * 60 * 60 * 1000);
 
     var options = {

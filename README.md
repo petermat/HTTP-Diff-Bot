@@ -98,9 +98,15 @@ Initial database structure
 	`python manage.py makemigrations checkweb`
 	`python manage.py migrate`
 
+
+(Production only) Allown writing to DB
+	`sudo chown www-data:www-data db.sqlite3`
+	`sudo chmod a+w db.sqlite3`
+
 Create system Superuser
 
 	`python manage.py create superuser`
+
 
 To fill project with test data run following:
 

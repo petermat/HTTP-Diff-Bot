@@ -61,7 +61,7 @@ class Command(BaseCommand):
 
         WatchUrl.objects.create(
             description='changing only content',
-            domain='http://127.0.0.1:8000/checkweb/test_reply?content=true',
+            domain='http://127.0.0.1/checkweb/test_reply?content=true',
             active_monitor = False,
             active_discover_urls = False,
             active_tor_proxy = False,
@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
         WatchUrl.objects.create(
             description='changing only status code',
-            domain='http://127.0.0.1:8000/checkweb/test_reply?status=true',
+            domain='http://127.0.0.1/checkweb/test_reply?status=true',
             active_monitor = False,
             active_discover_urls = False,
             active_tor_proxy = False,
@@ -79,7 +79,7 @@ class Command(BaseCommand):
 
         WatchUrl.objects.create(
             description='changing both status code and content',
-            domain='http://127.0.0.1:8000/checkweb/test_reply?status=true&content=true',
+            domain='http://127.0.0.1/checkweb/test_reply?status=true&content=true',
             active_monitor = False,
             active_discover_urls = False,
             active_tor_proxy = False,
