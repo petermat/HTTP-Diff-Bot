@@ -77,7 +77,7 @@ class Comparator:
             self.prev_snapshot.id,
             self.snapshot_obj.id
         ))
-        soup = BeautifulSoup(stdout.decode('utf-8'))
+        soup = BeautifulSoup(stdout.decode('utf-8'),features="html.parser")
         head_tag = soup.find('h1')
         #head_tag.name = 'h2'
         head_tag.string = 'Alert on changes: {}'.format(self.snapshot_obj.access_url)
@@ -107,7 +107,7 @@ class Comparator:
             if alert_on_content_change:
                 # sinle alert - change of content
                 message_short = "Change in content - {}% from total lenght {}".format(self.diff_content_int,self.snapshot_obj.html_dump_size_readable())
-                message_verbose = self.generate_diff_file() # todo
+                message_verbose = self.generate_diff_file()
 
             if alert_on_meta_change:
                 # single alert - change of meta
@@ -122,7 +122,7 @@ class Comparator:
         alert_obj.save()
 
         if alert_obj:
-            print("\t[Comparator] DEBUG: Alert saved. message_short: {}".format(message_short))
+            print("\t[Comparator] DEBUG: Alert {} saved. message_short: {}".format(alert_obj.id,message_short))
 
             if self.snapshot_obj.watchurl.active_email_alert:
 

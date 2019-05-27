@@ -105,19 +105,20 @@ class Harvester:
                     response = session.get(url_suggested, allow_redirects=True, verify=False, headers=random_headers())
                 except Exception as Er:# (ConnectionError,TimeoutError,NewConnectionError,MaxRetryError):
                     print("[Harvester]  *** ERROR: ConnectionError to {} per '{}'".format(url_suggested, Er))
-                    continue
-
-                if response.history:
-                    http_status_first = response.history[0].status_code
-                    redirected_url = response.url
-
-                    print("\t[Harvester] DEBUG: Redirections followed for: {}".format(url_suggested))
+                    http_status_last = None
+                    html_content = None
                 else:
-                    http_status_first,redirected_url = None, None
-                    print("\t[Harvester] DEBUG: No redirection followed for {}".format(url_suggested))
+                    if response.history:
+                        http_status_first = response.history[0].status_code
+                        redirected_url = response.url
 
-                http_status_last = response.status_code
-                html_content = response.text
+                        print("\t[Harvester] DEBUG: Redirections followed for: {}".format(url_suggested))
+                    else:
+                        http_status_first,redirected_url = None, None
+                        print("\t[Harvester] DEBUG: No redirection followed for {}".format(url_suggested))
+
+                    http_status_last = response.status_code
+                    html_content = response.text
             else:
                 http_status_first, http_status_last, redirected_url, html_content = None, None, None, None
 
