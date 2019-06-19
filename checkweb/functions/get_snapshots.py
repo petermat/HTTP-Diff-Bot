@@ -107,6 +107,8 @@ class Harvester:
                     print("[Harvester]  *** ERROR: ConnectionError to {} per '{}'".format(url_suggested, Er))
                     http_status_last = None
                     html_content = None
+                    http_status_first = None
+                    redirected_url = None
                 else:
                     if response.history:
                         http_status_first = response.history[0].status_code
