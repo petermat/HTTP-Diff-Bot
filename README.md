@@ -62,6 +62,7 @@ Screenshot - front-end dashboard
 	WSGIScriptAlias / /home/user/HTTP-Diff-Bot/project/wsgi.py
 	WSGIDaemonProcess servername python-home=/home/user/venv python-path=/home/user/HTTP-Diff-Bot
 	WSGIProcessGroup servername
+    WSGIApplicationGroup %{GLOBAL}
 
 	<Directory /home/user/HTTP-Diff-Bot/project/project/>
 		<Files wsgi.py>
