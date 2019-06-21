@@ -137,7 +137,7 @@ class Harvester:
                      html_dump_size=len(str(html_content or "")),
                      )
             # save shapshot dump
-            access_url_snag = url_suggested.replace('.','_').replace('/','').replace(':','')
+            access_url_snag = url_suggested.replace('.','_').replace('/','').replace(':','_')
             snapshot_obj.html_dump.save(
                     os.path.join(
                         slug_name,
