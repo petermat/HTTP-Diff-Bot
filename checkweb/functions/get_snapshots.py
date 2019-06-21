@@ -137,10 +137,11 @@ class Harvester:
                      html_dump_size=len(str(html_content or "")),
                      )
             # save shapshot dump
+            access_url_snag = url_suggested.replace('.','_').replace('/','').replace(':','')
             snapshot_obj.html_dump.save(
                     os.path.join(
                         slug_name,
-                        timezone.now().strftime("%Y-%m-%d-%H-%M-%S")+".txt"),
+                        timezone.now().strftime("%Y-%m-%d-%H-%M-%S")+"-"+access_url_snag+".txt"),
                     io.StringIO(html_content)
                     )
             print("\t[Harvester] DEBUG: Values saved for {}\n".format(url_suggested))
