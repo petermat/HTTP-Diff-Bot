@@ -4,6 +4,7 @@ from django.utils import timezone
 from difflib import SequenceMatcher
 from django.core.mail import send_mail
 from django.conf import settings
+import os
 
 #3rt party
 from prettytable import PrettyTable
@@ -27,8 +28,9 @@ class Comparator:
             .exclude(id=self.snapshot_obj.id)\
             .order_by('id').last()
 
-        if self.prev_snapshot :
+        if self.prev_snapshot and os.path.exists(self.prev_snapshot.html_dump.path):
             # calculate diff as summary and for treshold purposes
+
             m = SequenceMatcher(None, open(self.prev_snapshot.html_dump.path).read(), open(self.snapshot_obj.html_dump.path).read())
             self.diff_content_int = round(100 - (m.ratio() * 100), 2)
             print("\t[Comparator] DEBUG: Content diff is {}%".format(self.diff_content_int))
