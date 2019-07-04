@@ -20,7 +20,10 @@ import tldextract
 import django
 django.setup()
 
-
+# import the logging library
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 def random_headers():
     desktop_agents = [
@@ -50,7 +53,7 @@ class Harvester:
         self.watchUrl_obj = watchUrl_obj
 
         #def get_target_urls(self):
-        print("\n[Harvester] INFO: Starting with: {0}; Description:'{1}'".format(self.watchUrl_obj.domain, self.watchUrl_obj.description))
+        logger.info("[Harvester] INFO: Starting with: {0}; Description:'{1}'".format(self.watchUrl_obj.domain, self.watchUrl_obj.description))
 
         # return all combination of URLs
         if self.watchUrl_obj.active_discover_urls:
@@ -60,11 +63,11 @@ class Harvester:
 
             self.targeturls_list =  ['http://' + base_domain,'https://' + base_domain,
                     'http://www.' + base_domain,'https://www.' + base_domain]
-            print("\t[Harvester] DEBUG: URL Discovery ACTIVE. Target list={}".format(str(self.targeturls_list)))
+            logger.debug("[Harvester] DEBUG: URL Discovery ACTIVE. Target list={}".format(str(self.targeturls_list)))
 
         # URL discovery is off, domain will be used directly as URL
         else:
-            print("\t[Harvester] DEBUG: URL Discovery disabled, progressing with only following URL: {0}".format(self.watchUrl_obj.domain))
+            logger.debug("[Harvester] DEBUG: URL Discovery disabled, progressing with only following URL: {0}".format(self.watchUrl_obj.domain))
             self.targeturls_list = [self.watchUrl_obj.domain,]
 
     def return_targets(self):
@@ -82,9 +85,9 @@ class Harvester:
             assert ipaddress.ip_address(my_ipaddr)
             location_json = json.loads(requests.get("http://extreme-ip-lookup.com/json/{}".format(my_ipaddr)).text)
             my_location = location_json.get('country') + ", " + location_json.get('city')
-            print("\t[Harvester] DEBUG: My IP: {}, localized at '{}'".format(my_ipaddr, my_location))
+            logger.debug("[Harvester] DEBUG: My IP: {}, localized at '{}'".format(my_ipaddr, my_location))
         except Exception as Er:
-            print("\t[Harvester] ERROR: My IP address resolution failed, reason:{}".format(Er))
+            logger.warning("[Harvester] ERROR: My IP address resolution failed, reason:{}".format(Er))
 
         retun_objects=[]
         for url_suggested in self.targeturls_list:
@@ -94,17 +97,17 @@ class Harvester:
             urlex_obj = tldextract.extract(url_suggested)
             try:
                 resolved_ip = gethostbyname('.'.join([urlex_obj.subdomain,urlex_obj.domain,urlex_obj.suffix]).strip('.'))
-                print("\t[Harvester] DEBUG: IP Address resolved to {0} for: {1}".format(resolved_ip,url_suggested))
+                logger.debug("[Harvester] DEBUG: IP Address resolved to {0} for: {1}".format(resolved_ip,url_suggested))
 
             except gaierror:
                 resolved_ip = None
-                print("[Harvester]  * WARNING: IP Address not resolved for: {}".format(url_suggested))
+                logger.warning("[Harvester]  * WARNING: IP Address not resolved for: {}".format(url_suggested))
 
             if resolved_ip:
                 try:
                     response = session.get(url_suggested, allow_redirects=True, verify=False, headers=random_headers())
                 except Exception as Er:# (ConnectionError,TimeoutError,NewConnectionError,MaxRetryError):
-                    print("[Harvester]  *** ERROR: ConnectionError to {} per '{}'".format(url_suggested, Er))
+                    logger.error("[Harvester]  *** ERROR: ConnectionError to {} per '{}'".format(url_suggested, Er))
                     http_status_last = None
                     html_content = None
                     http_status_first = None
@@ -114,10 +117,10 @@ class Harvester:
                         http_status_first = response.history[0].status_code
                         redirected_url = response.url
 
-                        print("\t[Harvester] DEBUG: Redirections followed for: {}".format(url_suggested))
+                        logger.debug("[Harvester] DEBUG: Redirections followed for: {}".format(url_suggested))
                     else:
                         http_status_first,redirected_url = None, None
-                        print("\t[Harvester] DEBUG: No redirection followed for {}".format(url_suggested))
+                        logger.debug("[Harvester] DEBUG: No redirection followed for {}".format(url_suggested))
 
                     http_status_last = response.status_code
                     html_content = response.text
@@ -144,6 +147,6 @@ class Harvester:
                         timezone.now().strftime("%Y-%m-%d-%H-%M-%S")+"-"+access_url_snag+".txt"),
                     io.StringIO(html_content)
                     )
-            print("\t[Harvester] DEBUG: Values saved for {}\n".format(url_suggested))
+            logger.debug("[Harvester] DEBUG: Values saved for {}".format(url_suggested))
             retun_objects.append(snapshot_obj)
         return retun_objects

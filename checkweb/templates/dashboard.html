@@ -12,7 +12,7 @@
   <title>HTTP-Diff-Bot Dashboard</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
 
   <!-- Load jquery for ajax support -->
@@ -22,7 +22,7 @@
   <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script src="{% static 'vendor/visjs/vis.js' %}" ></script>
-  <link href="{% static "vendor/visjs/vis-timeline-graph2d.min.css" %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'vendor/visjs/vis-timeline-graph2d.min.css' %}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -48,6 +48,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://github.com/petermat/HTTP-Diff-Bot" target="_blank" >Repository</a>
+          </li>
+
+          <li class="nav-item">
+           <a class="btn btn-primary" href='/admin/checkweb/watchurl/add/' role="button">Add URL/Domain</a>
           </li>
         </ul>
       </div>

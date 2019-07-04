@@ -8,6 +8,11 @@ import os
 from checkweb.functions.get_snapshots import Harvester
 from checkweb.functions.compare_snapshots import Comparator
 
+# import the logging library
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 class Command(BaseCommand):
     help = """Runs thru all monitored domains"""
 
@@ -23,7 +28,7 @@ class Command(BaseCommand):
         #if options.get('delete'):
             # pass
 
-        print("INFO: Runner Starting...")
+        logger.info("INFO: Runner Starting...")
 
         if WatchUrl.objects.filter(active_monitor=True).count() >0:
             for watch_url_obj in WatchUrl.objects.filter(active_monitor=True):
@@ -33,9 +38,9 @@ class Command(BaseCommand):
                 for retun_object in retun_objects:
                     comparator_obj = Comparator(retun_object)
                     comparator_obj.compare_and_alert()
-            print("INFO: Runner DONE")
+            logger.info("INFO: Runner DONE")
         else:
-            print("WARNING: No WatchURL candidates, nothing to precess. Check WatchURL table")
+            logger.warning("WARNING: No WatchURL candidates, nothing to precess. Check WatchURL table")
 
 
 

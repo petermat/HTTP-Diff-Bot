@@ -13,6 +13,11 @@ from bs4 import BeautifulSoup
 import django
 django.setup()
 
+# import the logging library
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 class Comparator:
     '''
     inp: snapshot object
@@ -33,7 +38,7 @@ class Comparator:
 
             m = SequenceMatcher(None, open(self.prev_snapshot.html_dump.path).read(), open(self.snapshot_obj.html_dump.path).read())
             self.diff_content_int = round(100 - (m.ratio() * 100), 2)
-            print("\t[Comparator] DEBUG: Content diff is {}%".format(self.diff_content_int))
+            logger.debug("\t[Comparator] DEBUG: Content diff is {}%".format(self.diff_content_int))
 
             # returns difference between fields:
             # resolved_ip,http_status_first,http_status_last, redirected_url
@@ -55,7 +60,7 @@ class Comparator:
                 out_dict['redirected_url'] = {'current':self.snapshot_obj.redirected_url,
                                       'previous': self.prev_snapshot.redirected_url}
             self.diff_meta_dict =  out_dict
-            print("\t[Comparator] DEBUG: Meta diff amount: {}, compating snapshots {} vs {}".format(len(self.diff_meta_dict),
+            logger.debug("\t[Comparator] DEBUG: Meta diff amount: {}, compating snapshots {} vs {}".format(len(self.diff_meta_dict),
                                 self.prev_snapshot.id, self.snapshot_obj.id))
 
         else:
@@ -67,7 +72,7 @@ class Comparator:
         import subprocess
 
         if not self.prev_snapshot:
-            print("[Comparator] ERROR: Previous snapshot not found, comparison skipped")
+            logger.warning("[Comparator] ERROR: Previous snapshot not found, comparison skipped")
             return 0
 
         out = subprocess.Popen(['htmldiff', self.prev_snapshot.html_dump.path, self.snapshot_obj.html_dump.path],
@@ -75,7 +80,7 @@ class Comparator:
                                stderr=subprocess.STDOUT)
 
         stdout, stderr = out.communicate()
-        print('DEBUG: Frontend:HTMLDiff comparing shapshots {} and {}'.format(
+        logger.debug('DEBUG: Frontend:HTMLDiff comparing shapshots {} and {}'.format(
             self.prev_snapshot.id,
             self.snapshot_obj.id
         ))
@@ -124,7 +129,7 @@ class Comparator:
         alert_obj.save()
 
         if alert_obj:
-            print("\t[Comparator] DEBUG: Alert {} from Snapshot {} saved. message_short: {}".format(
+            logger.info("\t[Comparator] DEBUG: Alert {} from Snapshot {} saved. message_short: {}".format(
                 alert_obj.id,self.snapshot_obj.id,message_short))
 
             if self.snapshot_obj.watchurl.active_email_alert:
@@ -142,13 +147,13 @@ class Comparator:
 
         alert_on_content_change = False
         if self.diff_content_int > self.snapshot_obj.watchurl.treshold_change_percent:
-            print("\t[Comparator] DEBUG: Alerting on content change triggered ({}>{})".format(self.diff_content_int,
+            logger.info("\t[Comparator] DEBUG: Alerting on content change triggered ({}>{})".format(self.diff_content_int,
                                                                                               self.snapshot_obj.watchurl.treshold_change_percent))
             alert_on_content_change = True
 
         alert_on_meta_change = False
         if len(self.diff_meta_dict) > 0:
-            print("\t[Comparator] DEBUG: Alert on metadata triggered")
+            logger.info("\t[Comparator] DEBUG: Alert on metadata triggered")
             alert_on_meta_change = True
 
 
