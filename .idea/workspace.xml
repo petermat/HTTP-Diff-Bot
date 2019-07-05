@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f932edb9-b1cc-4941-910a-9a93c33b1375" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +75,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="486">
+                <state relative-caret-position="1717">
                   <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
@@ -86,8 +87,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="846">
-                  <caret line="145" column="29" lean-forward="true" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="29" />
+                <state relative-caret-position="1116">
+                  <caret line="152" column="29" lean-forward="true" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -95,7 +96,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/checkweb/templates/dashboard.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="697">
+                <state relative-caret-position="901">
                   <caret line="53" column="74" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="74" />
                 </state>
               </provider>
@@ -239,10 +240,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="508" />
-    <option name="y" value="146" />
-    <option name="width" value="1401" />
-    <option name="height" value="789" />
+    <option name="x" value="51" />
+    <option name="y" value="25" />
+    <option name="width" value="1869" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -250,6 +251,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,7 +284,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,7 +320,7 @@
     <frame x="51" y="-2" width="2509" height="1442" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08170586" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.053806297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -450,6 +451,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkweb/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="74" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -506,27 +524,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/functions/get_snapshots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/checkweb/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="53" column="74" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="145" column="29" lean-forward="true" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="29" />
+        <state relative-caret-position="1116">
+          <caret line="152" column="29" lean-forward="true" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
         </state>
       </provider>
     </entry>
