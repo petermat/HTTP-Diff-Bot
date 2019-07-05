@@ -129,7 +129,7 @@ import sys
 if 'runserver' in sys.argv:
     LOG_LOCATION = os.path.join(BASE_DIR, 'debug.log')
 else:
-    LOG_LOCATION = os.path.join('var','log','apache2', 'django.log')
+    LOG_LOCATION = os.path.join('/var','log','apache2', 'django.log')
 
 
 LOGGING = {
