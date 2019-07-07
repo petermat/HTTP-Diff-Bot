@@ -74,12 +74,9 @@ def dashboard(request):
 
     group_dict = group_dict_tmp
 
-    import getpass
-
 
     context = {'monitored_urls': monitored_urls,
             'active_disabled_urls':active_disabled_urls,
-               'debug_user':getpass.getuser(),
             'snapshots_24_7':snapshots_24_7,
             'alerts_24_7':alerts_24_7,
             'event_graph_dctlst':event_graph_dctlst,
