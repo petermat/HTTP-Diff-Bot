@@ -87,7 +87,8 @@ class Comparator:
         soup = BeautifulSoup(stdout.decode('utf-8'),features="html.parser")
         head_tag = soup.find('h1')
         #head_tag.name = 'h2'
-        head_tag.string = 'Alert on changes: {}'.format(self.snapshot_obj.access_url)
+        if head_tag:
+            head_tag.string = 'Alert on changes: {}'.format(self.snapshot_obj.access_url)
 
         return soup.prettify()
 
