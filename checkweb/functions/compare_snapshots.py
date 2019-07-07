@@ -75,11 +75,14 @@ class Comparator:
             logger.warning("[Comparator] ERROR: Previous snapshot not found, comparison skipped")
             return 0
 
-        p1 = os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path)
-        p2 = os.path.join(settings.BASE_DIR,self.snapshot_obj.html_dump.path)
+        p1 = self.prev_snapshot.html_dump.path.lstrip('/')
+        #os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path)
+        p2 = self.snapshot_obj.html_dump.path.lstrip('/')
+        #os.path.join(settings.BASE_DIR, self.snapshot_obj.html_dump.path)
+
         assert p1==p2
-        out = subprocess.Popen(['htmldiff', os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path),
-                                os.path.join(settings.BASE_DIR,self.snapshot_obj.html_dump.path)],
+        out = subprocess.Popen(['htmldiff', self.prev_snapshot.html_dump.path.lstrip('/'),
+                                self.snapshot_obj.html_dump.path.lstrip('/')],
                                stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT)
 
