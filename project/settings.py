@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'#os.path.join(BASE_DIR,os.pardir,'media')
+#MEDIA_ROOT = 'media/'#os.path.join(BASE_DIR,os.pardir,'media')
 
 # LOG location - if runs on apache, log to /etc/apache/django.log othervise to project folder
 import getpass
@@ -169,5 +169,7 @@ LOGGING = {
         },
     },
 }
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
 
 from .local import *
