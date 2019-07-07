@@ -79,8 +79,10 @@ class Comparator:
         #os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path)
         p2 = self.snapshot_obj.html_dump.path.lstrip('/')
         #os.path.join(settings.BASE_DIR, self.snapshot_obj.html_dump.path)
-        out = subprocess.Popen(['/usr/local/bin/htmldiff', self.prev_snapshot.html_dump.path.lstrip('/'),
-                                self.snapshot_obj.html_dump.path.lstrip('/')],
+        out = subprocess.Popen(['/usr/local/bin/htmldiff',
+                                #self.prev_snapshot.html_dump.path.lstrip('/'),
+                                #self.snapshot_obj.html_dump.path.lstrip('/')
+                                ],
                                stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT)
 
