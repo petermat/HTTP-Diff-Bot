@@ -79,6 +79,9 @@ class Comparator:
                                stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT)
 
+        assert 'home' in self.prev_snapshot.html_dump.path
+        assert 'home' in self.snapshot_obj.html_dump.path
+
         stdout, stderr = out.communicate()
         logger.debug('DEBUG: Frontend:HTMLDiff comparing shapshots {} and {}'.format(
             self.prev_snapshot.id,
