@@ -126,7 +126,7 @@ MEDIA_ROOT = 'media/'#os.path.join(BASE_DIR,os.pardir,'media')
 
 # LOG location - if runs on apache, log to /etc/apache/django.log othervise to project folder
 import getpass
-if getpass.getuser() == 'www-data':
+if str(getpass.getuser()) ==  'www-data':
     #LOG_LOCATION = os.path.join('/var', 'log', 'apache2', 'django.log')
     LOG_LOCATION = os.path.join(BASE_DIR, 'debug_production.log')
 else:
