@@ -27,3 +27,8 @@ urlpatterns = [
     path('checkweb/', include('checkweb.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+from django.contrib import admin
+admin.site.site_header = "ETRF Administration"
+admin.site.site_title = "ETRF Administration"

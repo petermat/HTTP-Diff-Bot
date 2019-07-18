@@ -4,7 +4,7 @@ from django.utils import timezone
 from difflib import SequenceMatcher
 from django.core.mail import send_mail
 from django.conf import settings
-import os
+import os, re
 
 #3rt party
 from prettytable import PrettyTable
@@ -17,6 +17,16 @@ django.setup()
 import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
+
+def disarm_urls_in_text(text):
+    if text:
+        urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+        for url in urls:
+            text = text.replace(url, url.replace("http", "hXXp").replace(".", "[.]"))
+    return text
+
+
 
 class Comparator:
     '''
@@ -143,9 +153,9 @@ class Comparator:
 
             if self.snapshot_obj.watchurl.active_email_alert:
 
-                send_mail(subject="Domain Monitor Alert ["+self.snapshot_obj.access_url+']: '+message_short,# Subject here'
+                send_mail(subject="Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),# Subject here'
                           message='message is in html not plain, something wrong',
-                          html_message=message_verbose,#self.generate_diff_file(),#Here is the message
+                          html_message=disarm_urls_in_text(message_verbose),#self.generate_diff_file(),#Here is the message
                           from_email=getattr(settings,'DEFAULT_FROM_EMAIL', None), # From
                           recipient_list=[value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
                           fail_silently=not settings.DEBUG)
