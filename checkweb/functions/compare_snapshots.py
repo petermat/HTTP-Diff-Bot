@@ -26,7 +26,12 @@ def disarm_urls_in_text(text):
             text = text.replace(url, url.replace("http", "hXXp").replace(".", "[.]"))
     return text
 
-
+def issamesubnet(fistIP, secondIP):
+    import ipaddress
+    if fistIP and secondIP:
+        if ipaddress.IPv4Address(fistIP).version == 4 and ipaddress.IPv4Address(secondIP).version:
+            if '.'.join(fistIP.split('.')[0:-1]) == '.'.join(secondIP.split('.')[0:-1]):
+                return True
 
 class Comparator:
     '''
@@ -174,6 +179,12 @@ class Comparator:
         if len(self.diff_meta_dict) > 0:
             logger.info("\t[Comparator] DEBUG: Alert on metadata triggered")
             alert_on_meta_change = True
+
+
+            if not self.snapshot_obj.watchurl.active_alert_on_similar_ips:
+                if not alert_on_content_change and issamesubnet(self.diff_meta_dict.get('resolved_ip').get('current'),
+                                                                self.diff_meta_dict.get('resolved_ip').get('previous')):
+                    alert_on_meta_change = False
 
 
         if alert_on_content_change or alert_on_meta_change:

@@ -11,12 +11,15 @@ class WatchUrl(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    active_monitor = models.BooleanField(default=True)
-    active_email_alert = models.BooleanField(default=True)
-    active_discover_urls = models.BooleanField(default=True)
-    active_tor_proxy = models.BooleanField(default=False)
+    active_monitor = models.BooleanField(default=True, verbose_name="Activate regular monitoring of the domain" )
+    active_email_alert = models.BooleanField(default=True,verbose_name="Email is send to all users when alert triggers on this domain")
+    active_alert_on_similar_ips = models.BooleanField(default=True,verbose_name="Raise an alert when IP Address changed only within same IP range")
+    active_discover_urls = models.BooleanField(default=True, verbose_name="Search for http/https and www. variants as well")
+    active_tor_proxy = models.BooleanField(default=False, verbose_name="Use TOR Proxy then interacting with domain")
 
-    treshold_change_percent = models.SmallIntegerField(default=1) # percent of changed text to trigger alert
+    treshold_change_percent = models.SmallIntegerField(default=10) # percent of changed text to trigger alert
+
+
 
     def __str__(self):
         return self.domain
