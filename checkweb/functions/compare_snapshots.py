@@ -184,6 +184,9 @@ class Comparator:
             if not self.snapshot_obj.watchurl.active_alert_on_similar_ips:
                 if not alert_on_content_change and issamesubnet(self.diff_meta_dict.get('resolved_ip').get('current'),
                                                                 self.diff_meta_dict.get('resolved_ip').get('previous')):
+                    logger.info("\t[Comparator] DEBUG: Alert on metadata NOT triggered because {} and {} in same range".format(
+                        self.diff_meta_dict.get('resolved_ip').get('current'),
+                        self.diff_meta_dict.get('resolved_ip').get('previous')))
                     alert_on_meta_change = False
 
 
