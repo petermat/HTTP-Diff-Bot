@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
-
+import tldextract
 
 
 class WatchUrl(models.Model):
@@ -35,6 +35,9 @@ class WatchUrl(models.Model):
     treshold_change_percent = models.SmallIntegerField(default=10) # percent of changed text to trigger alert
 
 
+    #def domain_extracted(self):
+    #    tmp = tldextract.extract(self.domain)
+    #    return tmp.domain + '.' + tmp.suffix
 
     def __str__(self):
         return self.domain
