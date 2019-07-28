@@ -23,10 +23,12 @@ deactivate_email_alerting.short_description = "Disable Email Alerting"
 
 ### DATABASE  DEFINITION ###
 class watchUrlAdmin(admin.ModelAdmin):
-    list_display = ('domain','active_monitor','active_email_alert', 'active_discover_urls','active_tor_proxy',
+    list_display = ('domain','active_monitor','active_email_alert', 'active_alert_on_similar_ips',
+                    'active_discover_urls','active_tor_proxy',
                     'description', 'created', 'updated')
     actions = [activate_active_monitor, deactivate_active_monitor,activate_email_alerting,deactivate_email_alerting]
     list_filter = ('active_monitor','active_email_alert','active_tor_proxy')
+
 
 admin.site.register(WatchUrl, watchUrlAdmin)
 

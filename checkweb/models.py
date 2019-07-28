@@ -5,17 +5,32 @@ from django.core.files.storage import FileSystemStorage
 
 
 class WatchUrl(models.Model):
-    domain = models.URLField(max_length=120)
-    description = models.TextField( max_length=500,blank=True, null=True)
+    domain = models.URLField(max_length=120,help_text='Enter domain \'example.com\' and activate URL discovery checkbox below or enter exact URL to monitor. Like https://www.example.com ')
+    description = models.TextField( max_length=500,blank=True, null=True, help_text='Who requested monitor? What is the story behind?')
     #urls = models.URLField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    active_monitor = models.BooleanField(default=True, verbose_name="Activate regular monitoring of the domain" )
-    active_email_alert = models.BooleanField(default=True,verbose_name="Email is send to all users when alert triggers on this domain")
-    active_alert_on_similar_ips = models.BooleanField(default=True,verbose_name="Raise an alert when IP Address changed only within same IP range")
-    active_discover_urls = models.BooleanField(default=True, verbose_name="Search for http/https and www. variants as well")
-    active_tor_proxy = models.BooleanField(default=False, verbose_name="Use TOR Proxy then interacting with domain")
+    active_monitor = models.BooleanField(default=True,
+                                         verbose_name='Monitoring Active',
+                                         help_text="Activate regular monitoring of the domain." )
+    active_email_alert = models.BooleanField(default=True,
+                                        verbose_name='Email Alers',
+                                        help_text="Email is send to all active staff users when alert triggers on this domain")
+    active_alert_on_similar_ips = models.BooleanField(default=True,
+                                        verbose_name='IP Small Change',
+                                        help_text="""Raise an alert when IP Address changed but still within same IP range.
+                                        Disable to ignore small changes like 123.123.123.123 -> 123.123.123.124.""")
+    active_discover_urls = models.BooleanField(default=True,
+                                               verbose_name='URL Discovery',
+                                               help_text="""Enter example.com and system will create http://domain.com, 
+                                               http://www.domain.com, https://domain.com and https://www.domain.com  variants as well.
+                                               Do not use when exact URL to watch is known, like https://something.domain.com/somasubpage/index.php 
+                                               """)
+    active_tor_proxy = models.BooleanField(default=False,
+                                           verbose_name='TOR Proxy',
+                                           help_text="""Use TOR Proxy then connecting with domain. Use when maliciocus intent is confirmed. 
+                                           TOR connections are less reliable but not tracable backwards""")
 
     treshold_change_percent = models.SmallIntegerField(default=10) # percent of changed text to trigger alert
 
