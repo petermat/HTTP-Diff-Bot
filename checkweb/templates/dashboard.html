@@ -21,8 +21,7 @@
 
   <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
-
+  
   <script src="{% static 'vendor/visjs/vis.js' %}" ></script>
   <link href="{% static 'vendor/visjs/vis-timeline-graph2d.min.css' %}" rel="stylesheet" type="text/css" />
 
@@ -193,13 +192,16 @@
 
 
   <script>
-    var now = moment().tz("America/Los_Angeles").minutes(0).seconds(0).milliseconds(0);
-    var groupCount = 3;
-    var itemCount = 2;
+
+
+
+    //var now = moment.utc().minutes(0).seconds(0).milliseconds(0);
+    //var groupCount = 3;
+    //var itemCount = 2;
 
     // create a data set with groups
-    var names = ['John', 'Alston', 'Lee', 'Grant','g1'];
-    var groups = new vis.DataSet();
+    // var names = ['John', 'Alston', 'Lee', 'Grant','g1'];
+     var groups = new vis.DataSet();
     //for (var g = 0; g < groupCount; g++) {
     //  groups.add({id: g, content: names[g]});
     //}
@@ -247,7 +249,7 @@
     var container = document.getElementById('visualization');
     var today = new Date(new Date().setHours(24,0,0,0));
     //var today = new Date(new Date().setHours(12,0,0,0));
-    var lastweek = new Date(today.getTime() - 4 * 24 * 60 * 60 * 1000);
+    var lastweek = new Date(today.getTime() - 2 * 24 * 60 * 60 * 1000);
 
     var options = {
       groupOrder: 'content',  // groupOrder can be a property name or a sorting function
@@ -255,13 +257,18 @@
       //max: new Date(2019, 1, 11),
       zoomMax: 1000 * 60 * 60 * 24*31*3,
       start:lastweek,
-      end:today
+      end:today,
+      moment: function(date) {
+        return vis.moment(date).utc();
+    }
     };
+
 
     var timeline = new vis.Timeline(container);
     timeline.setOptions(options);
     timeline.setGroups(groups);
     timeline.setItems(items);
+
 
   </script>
 
