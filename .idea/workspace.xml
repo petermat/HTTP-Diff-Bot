@@ -17,35 +17,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>checkweb_snapshot</find>
-      <find>ConnectionError</find>
-      <find>targets to harvest</find>
-      <find>HtmlFormatter</find>
-      <find>HTML_TEMPLATE</find>
-      <find>jqueryJsFile</find>
-      <find>print_width</find>
-      <find>write</find>
-      <find>original_code</find>
-      <find>active_alert</find>
-      <find>static</find>
-      <find>diff_fullpage_local</find>
-      <find>diff2HtmlCompare</find>
-      <find>name</find>
-      <find>http_status_last</find>
-      <find>html_dump</find>
-      <find>diff_meta_dict</find>
-      <find>active_monitor</find>
-      <find>print</find>
-      <find>\n</find>
-      <find>try:</find>
-      <find>***</find>
-      <find>BASE_DIR</find>
-      <find>sett</find>
-      <find>asse</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
