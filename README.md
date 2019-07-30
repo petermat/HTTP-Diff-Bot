@@ -38,7 +38,7 @@ Screenshot - front-end dashboard
 	`ssh-keygen -t rsa -b 4096`
 	`ssh-add ~/.ssh/id_rsa`
 
-	`git clone git@github.com:petermat/HTTP-Diff-Bot.git`
+	`git clone git@github.com:petermat/HTTP-Diff-Bot.git` OR `git clone https://github.com/petermat/HTTP-Diff-Bot.git`
 
 - Configure Python Virtual environment
 	```
@@ -59,30 +59,31 @@ Screenshot - front-end dashboard
 	and replace SECRET_KEY value in `project/settings.py`.
 
 
-- Reverse Apache proxy for production environment. Configure `/etc/apace2/site-available/000-default.conf`:
+- Reverse Apache proxy for production environment. Configure `/etc/apache2/site-available/000-default.conf`:
 
 	```
-	WSGIScriptAlias / /home/user/HTTP-Diff-Bot/project/wsgi.py
-	WSGIDaemonProcess servername python-home=/home/user/venv python-path=/home/user/HTTP-Diff-Bot
-	WSGIProcessGroup servername
-    WSGIApplicationGroup %{GLOBAL}
+         WSGIScriptAlias / /home/<USER>/HTTP-Diff-Bot/project/wsgi.py
+         WSGIDaemonProcess servername python-home=/home/<USER>/venv python-path=/home/<USER>/HTTP-Diff-Bot
+         WSGIProcessGroup servername
+         WSGIApplicationGroup %{GLOBAL}
 
-	<Directory /home/user/HTTP-Diff-Bot/project/project/>
-		<Files wsgi.py>
-			Order deny,allow
-			Allow from all
-		</Files>
-	</Directory>
+         Alias /static/ /home/<USER>/HTTP-Diff-Bot/static/
 
-	<Directory /home/user/HTTP-Diff-Bot/project/ >
-		Options Indexes FollowSymLinks
-		Require all granted
-	</Directory>
+         <Directory /home/<USER>/HTTP-Diff-Bot/project/>
+                <Files wsgi.py>
+                        Require all granted
+                </Files>
+         </Directory>
+
+         <Directory /home/<USER>/HTTP-Diff-Bot/static >
+                Require all granted
+         </Directory>
+
 	```
 
 - Add user to www-data group
 
-	`sudo usermod -a -G www-data myuser`
+	`sudo usermod -a -G www-data <myuser>`
 
 - Collect static files for Web Server
 
@@ -90,8 +91,12 @@ Screenshot - front-end dashboard
 
 - add CRON entry for scheduled run
 
-	`0 */4 * * * /home/myuser/venv/bin/python /home/myuser/manage.py runner`
+	`0 */4 * * * /home/myuser/venv/bin/python /home/<USER>/manage.py runner`
 
+- set permissions for www-data log file
+
+	`touch /home/<USER>/HTTP-Diff-Bot/debug_production.log`	
+	`sudo chown www-data:www-data /home/<user>/HTTP-Diff-Bot/debug_production.log`
 
 ## Getting Started
 
@@ -104,12 +109,12 @@ Initial database structure
 
 
 (Production only) Allown writing to DB
-	`sudo chown www-data:www-data db.sqlite3`
-	`sudo chmod a+w db.sqlite3`
+	`setfacl -m u:www-data:rwx /home/user/website`
+	`sudo setfacl -m u:www-data:rw /home/user/website/db.sqlite3db.sqlite3`
 
 Create system Superuser
 
-	`python manage.py create superuser`
+	`python manage.py createsuperuser`
 
 
 To fill project with test data run following:
