@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from django.db.models.functions import TruncDay
 
-
+import pytz
 from checkweb.models import *
 from checkweb.functions.compare_snapshots import Comparator
 
@@ -53,16 +53,22 @@ def dashboard(request):
                                    'group':list(group_dict.keys())[list(group_dict.values()).index(snaps_event.access_url)],
                                    'content':'{} ({})'.format(snaps_event.http_status_last,
                                                                             snaps_event.html_dump_size_readable()),
-                                   'start': snaps_event.created.strftime("%Y-%m-%d %H:%M:%S"),
+                                   'start': snaps_event.created.astimezone(tz=pytz.timezone('Europe/Amsterdam')).strftime("%Y-%m-%d %H:%M:%S"),
                                    'type': 'box'
                                    })
         id_counter += 1
 
     for alert_event in Alert.objects.filter(watchurl__active_monitor=True).order_by("-created"):
+        if " content " in alert_event.message_short:
+            content_variable = '<a href=/checkweb/content_diff?id={} target="_blank"><font color="red">Alert: {}</font></a>'.format(alert_event.id, alert_event.message_short.replace("'",""))
+        else:
+            content_variable = '<font color="red">Alert: {}</font>'.format(alert_event.message_short.replace("'",""))
+
+        #utc_to_local_dt = timezone.datetime.utcfrom(alert_event.created)
         event_graph_dctlst.append({'id':id_counter,
                                    'group':list(group_dict.keys())[list(group_dict.values()).index(alert_event.snapshot_current.access_url)],
-                                   'content':'<a href=/checkweb/content_diff?id={} target="_blank"><font color="red">Alert: {}</font></a>'.format(alert_event.id, alert_event.message_short.replace("'","")),
-                                   'start': alert_event.created.strftime("%Y-%m-%d %H:%M:%S"),
+                                   'content':content_variable,
+                                   'start': alert_event.created.astimezone(tz=pytz.timezone('Europe/Amsterdam')).strftime("%Y-%m-%d %H:%M:%S"),
                                    'type': 'point'
                                    })
         id_counter += 1

@@ -171,7 +171,7 @@
               </thead>
               <tbody>{% for alert_qs in alerts_qs %}
                 <tr>
-                  <th scope="row">{{ alert_qs.created }}</th>
+                  <th scope="row"><a href=/admin/checkweb/alert/{{ alert_qs.id }} target="_blank">{{ alert_qs.created }}</a></th>
                   <td>{{ alert_qs.snapshot_current.access_url }}</td>
                   <td>{{ alert_qs.message_short }}</td>
                 </tr>{% endfor %}
@@ -187,8 +187,8 @@
   </div><!-- container -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{% static "vendor/jquery/jquery.slim.min.js" %}"></script>
-  <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src='{% static "vendor/jquery/jquery.slim.min.js" %}'></script>
+  <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
 
 
   <script>

@@ -1,7 +1,7 @@
 # HTTP-Diff-Bot
 
-HTTP-Diff-Bot is Django powered application to compare and alert on changes of HTTP and HTML responses.
-Define URL or Domain to monitor and receive email every time a change is observed.
+HTTP-Diff-Bot is Django powered application to compare and alert on changes in HTTP and HTML responses.
+Simple insert URL or Domain to monitor and receive email every time a change is observed.
 
 Features:
 
@@ -18,7 +18,7 @@ Screenshot - front-end dashboard
 
 ### Prerequisites
 
-- OS: Linux (referred), OS X or Windows
+- OS: Linux (preferred), OS X or Windows
 - Python >= 3.6
 - Apache/Nginx  (Production Deployment Only)
 - [Ruby diff-lcs library](https://rubygems.org/gems/diff-lcs)

@@ -30,5 +30,5 @@ urlpatterns = [
 
 
 from django.contrib import admin
-admin.site.site_header = "ETRF Administration"
-admin.site.site_title = "ETRF Administration"
+admin.site.site_header = "Domain Monitor Administration"
+admin.site.site_title = "Domain Monitor Administration"
