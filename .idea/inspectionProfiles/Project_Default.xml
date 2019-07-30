@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="170">
+          <list size="186">
             <item index="0" class="java.lang.String" itemvalue="oletools" />
             <item index="1" class="java.lang.String" itemvalue="functools32" />
             <item index="2" class="java.lang.String" itemvalue="PyYAML" />
@@ -175,6 +175,22 @@
             <item index="167" class="java.lang.String" itemvalue="Unidecode" />
             <item index="168" class="java.lang.String" itemvalue="colorama" />
             <item index="169" class="java.lang.String" itemvalue="vipermonkey" />
+            <item index="170" class="java.lang.String" itemvalue="traitlets" />
+            <item index="171" class="java.lang.String" itemvalue="asn1crypto" />
+            <item index="172" class="java.lang.String" itemvalue="parso" />
+            <item index="173" class="java.lang.String" itemvalue="ptyprocess" />
+            <item index="174" class="java.lang.String" itemvalue="cryptography" />
+            <item index="175" class="java.lang.String" itemvalue="pycparser" />
+            <item index="176" class="java.lang.String" itemvalue="django-extensions" />
+            <item index="177" class="java.lang.String" itemvalue="PTable" />
+            <item index="178" class="java.lang.String" itemvalue="mistune" />
+            <item index="179" class="java.lang.String" itemvalue="jedi" />
+            <item index="180" class="java.lang.String" itemvalue="ipython-genutils" />
+            <item index="181" class="java.lang.String" itemvalue="backcall" />
+            <item index="182" class="java.lang.String" itemvalue="pyOpenSSL" />
+            <item index="183" class="java.lang.String" itemvalue="requests-file" />
+            <item index="184" class="java.lang.String" itemvalue="soupsieve" />
+            <item index="185" class="java.lang.String" itemvalue="tldextract" />
           </list>
         </value>
       </option>

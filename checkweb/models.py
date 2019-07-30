@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
-import tldextract
+#import tldextract
 
 
 class WatchUrl(models.Model):

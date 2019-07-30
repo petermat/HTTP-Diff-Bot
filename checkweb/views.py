@@ -61,7 +61,7 @@ def dashboard(request):
     for alert_event in Alert.objects.filter(watchurl__active_monitor=True).order_by("-created"):
         event_graph_dctlst.append({'id':id_counter,
                                    'group':list(group_dict.keys())[list(group_dict.values()).index(alert_event.snapshot_current.access_url)],
-                                   'content':'Alert: {}'.format(alert_event.message_short),
+                                   'content':'<a href=/checkweb/content_diff?id={} target="_blank"><font color="red">Alert: {}</font></a>'.format(alert_event.id, alert_event.message_short.replace("'","")),
                                    'start': alert_event.created.strftime("%Y-%m-%d %H:%M:%S"),
                                    'type': 'point'
                                    })
