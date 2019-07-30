@@ -26,10 +26,10 @@ def dashboard(request):
     active_disabled_urls = int(monitored_urls / WatchUrl.objects.all().count()*100)
     last24h = timezone.datetime.now() - timezone.timedelta(days=1)
     last7d = timezone.datetime.now() - timezone.timedelta(days=7)
-    snapshots_24_7 = [Snapshot.objects.filter(created__gte=last24h).count(),
-                   Snapshot.objects.filter(created__gte=last7d).count()]
-    alerts_24_7 = [Alert.objects.filter(created__gte=last24h).count(),
-                   Alert.objects.filter(created__gte=last7d).count()]
+    snapshots_24_7 = [Snapshot.objects.filter(created__gte=last24h,watchurl__active_monitor=True ).count(),
+                   Snapshot.objects.filter(created__gte=last7d,watchurl__active_monitor=True ).count()]
+    alerts_24_7 = [Alert.objects.filter(created__gte=last24h,watchurl__active_monitor=True).count(),
+                   Alert.objects.filter(created__gte=last7d,watchurl__active_monitor=True).count()]
 
 
     group_dict = dict()
