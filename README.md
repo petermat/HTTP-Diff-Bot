@@ -27,13 +27,16 @@ Screenshot - front-end dashboard
 
 - Install system packages
 
-	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor `
+	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor rubygems`
 
 - Install Ruby Diff library
 
 	`sudo gem install diff-lcs`
 
 - Get package
+		
+	`ssh-keygen -t rsa -b 4096`
+	`ssh-add ~/.ssh/id_rsa`
 
 	`git clone git@github.com:petermat/HTTP-Diff-Bot.git`
 
