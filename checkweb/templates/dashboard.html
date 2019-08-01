@@ -207,7 +207,7 @@
     //}
 
     groups.add([
-                {% for group_key, group_value in group_dict.items %}
+                {% for group_key, group_value in group_list %}
                   {id: {{ group_key }}, content: '{{ group_value | safe }}'},
                 {% endfor %}
                 ]);
@@ -252,7 +252,7 @@
     var lastweek = new Date(today.getTime() - 2 * 24 * 60 * 60 * 1000);
 
     var options = {
-      groupOrder: 'content',  // groupOrder can be a property name or a sorting function
+      groupOrder: 'id',//'content',  // groupOrder can be a property name or a sorting function
       //in: new Date(2018, 1, 5),
       //max: new Date(2019, 1, 11),
       zoomMax: 1000 * 60 * 60 * 24*31*3,

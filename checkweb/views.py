@@ -38,11 +38,12 @@ def dashboard(request):
     #        .replace("//","+:;+").replace("/","/<br>").replace("?","?<br>").replace("&","&<br>").replace("+:;+","//")
 
     url_backlog = []
-    for watch_obj in Snapshot.objects.filter(watchurl__active_monitor=True).values('id','access_url'):
+    group_list  = [] # this list keep order, similar dict used in code for lookup
+    for watch_obj in Snapshot.objects.filter(watchurl__active_monitor=True).order_by('watchurl').values('id','access_url'):
         if watch_obj.get('access_url') not in url_backlog:
             url_backlog.append(watch_obj.get('access_url'))
             group_dict[watch_obj.get('id')] = str(watch_obj.get('access_url') or "")
-
+            group_list.append([watch_obj.get('id'),str(watch_obj.get('access_url') or "")])
 
 
 
@@ -73,12 +74,6 @@ def dashboard(request):
                                    })
         id_counter += 1
 
-    #reformat groups names for better fit to table cell
-    group_dict_tmp = dict()
-    for key, value in group_dict.items():
-        group_dict_tmp[key] = value.replace("//","+:;+").replace("/","/<br>").replace("?","?<br>").replace("&","&<br>").replace("+:;+","//")
-
-    group_dict = group_dict_tmp
 
 
     context = {'monitored_urls': monitored_urls,
@@ -86,7 +81,7 @@ def dashboard(request):
             'snapshots_24_7':snapshots_24_7,
             'alerts_24_7':alerts_24_7,
             'event_graph_dctlst':event_graph_dctlst,
-            'group_dict':group_dict,
+            'group_list':group_list,
             'alerts_qs':Alert.objects.filter(watchurl__active_monitor=True,created__gte=last7d ).order_by("-created")}
 
     return HttpResponse(template.render(context, request))
