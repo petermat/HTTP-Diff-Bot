@@ -14,7 +14,7 @@ class WatchUrl(models.Model):
                                          verbose_name='Monitoring Active',
                                          help_text="Activate regular monitoring of the domain." )
     active_email_alert = models.BooleanField(default=True,
-                                        verbose_name='Email Alers',
+                                        verbose_name='Email Alerts',
                                         help_text="Email is send to all active staff users when alert triggers on this domain")
     active_alert_on_similar_ips = models.BooleanField(default=True,
                                         verbose_name='IP Small Change',
@@ -28,8 +28,8 @@ class WatchUrl(models.Model):
                                                """)
     active_tor_proxy = models.BooleanField(default=False,
                                            verbose_name='TOR Proxy',
-                                           help_text="""Use TOR Proxy then connecting with domain. Use when maliciocus intent is confirmed. 
-                                           TOR connections are less reliable but not tracable backwards""")
+                                           help_text="""Use TOR Proxy then connecting with domain. Use when malicious intent is confirmed. 
+                                           TOR connections are less reliable but not traceable backwards""")
 
     treshold_change_percent = models.SmallIntegerField(default=10) # percent of changed text to trigger alert
 
