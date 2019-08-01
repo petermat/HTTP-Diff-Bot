@@ -50,8 +50,6 @@ class Snapshot(models.Model):
     watchurl = models.ForeignKey(WatchUrl, on_delete=models.CASCADE)
     my_ipaddr = models.GenericIPAddressField(blank=True, null=True)
     my_location = models.TextField(max_length=400,blank=True, null=True)
-    domain_shortname = models.URLField(max_length=120, editable=False,blank=True)
-
     resolved_ip = models.GenericIPAddressField(blank=True, null=True)
     http_status_first  = models.SmallIntegerField(blank=True, null=True) #fist is usually redirect 301
     http_status_last = models.SmallIntegerField(blank=True, null=True) #last status after all redirects
