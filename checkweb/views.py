@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 
 from django.db.models.functions import TruncDay
 
@@ -92,6 +94,7 @@ def list_of_alerts():
 
 ### detail views ###
 
+@login_required
 def htmldiffview(request):
     comparator_obj = Comparator(snapshot_obj=Snapshot.objects.get(id=request.GET.get('id')))
     retrieved_fromDiff = comparator_obj.generate_diff_file()
@@ -101,6 +104,7 @@ def htmldiffview(request):
     template = loader.get_template('show_diff.html')
     return HttpResponse(template.render(context, request))
 
+@login_required
 def test_reply(request):
     template = loader.get_template('test_reply.html')
 
