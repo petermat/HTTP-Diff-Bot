@@ -58,7 +58,7 @@ class Comparator:
             # returns difference between fields:
             # resolved_ip,http_status_first,http_status_last, redirected_url
             # return {resolved_ip:{'current':111, 'previous': 112}}
-            out_dict=dict()
+            out_dict = dict()
             if self.snapshot_obj.resolved_ip != self.prev_snapshot.resolved_ip:
                 out_dict['resolved_ip'] = {'current':self.snapshot_obj.resolved_ip,
                                       'previous': self.prev_snapshot.resolved_ip}
@@ -91,16 +91,15 @@ class Comparator:
             return 0
 
         p1 = self.prev_snapshot.html_dump.path
-        #os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path)
+        # os.path.join(settings.BASE_DIR ,self.prev_snapshot.html_dump.path)
         p2 = self.snapshot_obj.html_dump.path
-        #os.path.join(settings.BASE_DIR, self.snapshot_obj.html_dump.path)
+        # os.path.join(settings.BASE_DIR, self.snapshot_obj.html_dump.path)
         out = subprocess.Popen(['/usr/local/bin/htmldiff',
                                 self.prev_snapshot.html_dump.path,
                                 self.snapshot_obj.html_dump.path
                                 ],
                                stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT)
-
 
         stdout, stderr = out.communicate()
         logger.debug('DEBUG: Frontend:HTMLDiff comparing shapshots {} and {}'.format(
@@ -109,7 +108,7 @@ class Comparator:
         ))
         soup = BeautifulSoup(stdout.decode('utf-8'),features="html.parser")
         head_tag = soup.find('h1')
-        #head_tag.name = 'h2'
+        # head_tag.name = 'h2'
         if head_tag:
             head_tag.string = 'Alert on changes: {}'.format(self.snapshot_obj.access_url)
 
@@ -118,32 +117,39 @@ class Comparator:
 
 
     # not for direct use
-    def generate_alert_object(self,alert_on_content_change=False, alert_on_meta_change=False):
-        message_verbose,message_short = "",None
+    def generate_alert_object(self, alert_on_content_change=False, alert_on_meta_change=False):
 
-        metachange_html=None
+        raise_email_alert = False  # added to cancel alert on change of metadata only
+        message_verbose, message_short = "", None
+
+        metachange_html = None
         if alert_on_meta_change:
             x = PrettyTable()
             x.field_names = ["Changed field", "Previous value", "Current Value"]
             for part_dict in self.diff_meta_dict.items():
                 x.add_row([part_dict[0], part_dict[1].get('previous'),part_dict[1].get('current')])
             metachange_html = x.get_html_string()
+            raise_email_alert = False
 
         if alert_on_content_change and alert_on_meta_change:
             # multi alert
             message_short = "Change in content of ({}% from {}) and metadata: {}".format(
                 self.diff_content_int, self.snapshot_obj.html_dump_size_readable(),str(self.diff_meta_dict))
             message_verbose = metachange_html + self.generate_diff_file()
+            raise_email_alert = True
         else:
-            if alert_on_content_change:
-                # sinle alert - change of content
-                message_short = "Change in content - {}% from total lenght {}".format(self.diff_content_int,self.snapshot_obj.html_dump_size_readable())
-                message_verbose = self.generate_diff_file()
 
             if alert_on_meta_change:
                 # single alert - change of meta
-                message_short= "Change in metadata: {}".format(str(self.diff_meta_dict))
+                message_short = "Change in metadata: {}".format(str(self.diff_meta_dict))
                 message_verbose = metachange_html
+                raise_email_alert = False
+
+            if alert_on_content_change:
+                # single alert - change of content
+                message_short = "Change in content - {}% from total lenght {}".format(self.diff_content_int,self.snapshot_obj.html_dump_size_readable())
+                message_verbose = self.generate_diff_file()
+                raise_email_alert = True
 
         alert_obj = Alert(snapshot_current=self.snapshot_obj,
                           snapshot_previous=self.prev_snapshot,
@@ -154,16 +160,16 @@ class Comparator:
 
         if alert_obj:
             logger.info("\t[Comparator] DEBUG: Alert {} from Snapshot {} saved. message_short: {}".format(
-                alert_obj.id,self.snapshot_obj.id,message_short))
+                alert_obj.id, self.snapshot_obj.id, message_short))
 
             if self.snapshot_obj.watchurl.active_email_alert:
-
-                send_mail(subject="Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),# Subject here'
-                          message='message is in html not plain, something wrong',
-                          html_message=disarm_urls_in_text(message_verbose),#self.generate_diff_file(),#Here is the message
-                          from_email=getattr(settings,'DEFAULT_FROM_EMAIL', None), # From
-                          recipient_list=[value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
-                          fail_silently=not settings.DEBUG)
+                if raise_email_alert:
+                    send_mail(subject="Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),# Subject here'
+                              message='message is in html not plain, something wrong',
+                              html_message=disarm_urls_in_text(message_verbose),#self.generate_diff_file(),#Here is the message
+                              from_email=getattr(settings,'DEFAULT_FROM_EMAIL', None), # From
+                              recipient_list=[value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
+                              fail_silently=not settings.DEBUG)
 
 
     # main function - backend
