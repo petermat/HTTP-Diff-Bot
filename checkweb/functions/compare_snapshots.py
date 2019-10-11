@@ -187,12 +187,14 @@ class Comparator:
                                             )
                     email_obj.content_subtype = 'html'
                     email_obj.mixed_subtype = 'related'
-                    logo_item = MIMEImage(open(self.prev_snapshot.screenshot.path, 'rb').read(), _subtype='png')
-                    logo_item.add_header('Content-ID', '<{}>'.format(self.prev_snapshot.screenshot))
-                    email_obj.attach(logo_item)
-                    image = MIMEImage(self.snapshot_obj.screenshot.read())
-                    image.add_header('Content-ID', '<{}>'.format(self.snapshot_obj.screenshot))
-                    email_obj.attach(image)
+                    if self.prev_snapshot.screenshot:
+                        logo_item = MIMEImage(open(self.prev_snapshot.screenshot.path, 'rb').read(), _subtype='png')
+                        logo_item.add_header('Content-ID', '<{}>'.format(self.prev_snapshot.screenshot))
+                        email_obj.attach(logo_item)
+                    if self.snapshot_obj.screenshot:
+                        image = MIMEImage(self.snapshot_obj.screenshot.read())
+                        image.add_header('Content-ID', '<{}>'.format(self.snapshot_obj.screenshot))
+                        email_obj.attach(image)
                     email_obj.send()
 
                     """
