@@ -43,4 +43,15 @@ class Command(BaseCommand):
             logger.warning("WARNING: No WatchURL candidates, nothing to precess. Check WatchURL table")
 
 
+        # cleaning
+        time_threshold = timezone.now() - timezone.timedelta(days=14)
 
+        try:
+            Alert.objects.filter(created__gte=time_threshold).delete()
+        except Exception as Err:
+            logger.error("Cleaning script on Alerts failed. Err: {}".format(Err))
+
+        try:
+            Snapshot.objects.filter(created__gte=time_threshold).delete()
+        except Exception as Err:
+            logger.error("Cleaning script on Snapshots failed. Error:{}".format(Err))

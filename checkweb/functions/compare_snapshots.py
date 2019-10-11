@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 import os, re
 
+from django.core.mail import send_mail, EmailMessage
+from email.mime.image import MIMEImage
+
 #3rt party
 from prettytable import PrettyTable
 from bs4 import BeautifulSoup
@@ -164,12 +167,43 @@ class Comparator:
 
             if self.snapshot_obj.watchurl.active_email_alert:
                 if raise_email_alert:
+
+                    html_message =  """ <table>
+                                            <tr><th>Previous screenshot</th><th>Current Screenshot</th><tr>
+                                            <tr><IMG width="500" SRC="cid:{}" alt="previous screenshot"><td></td>
+                                            <td><IMG width="500" SRC="cid:{}" alt="current screenshot"></td></tr>
+                                        </table>
+                                    """.format(self.prev_snapshot.screenshot, self.snapshot_obj.screenshot)
+                    html_message += disarm_urls_in_text(message_verbose)
+
+                    from django.core.mail import EmailMessage
+                    email_obj = EmailMessage("Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),
+                                            html_message,
+                                            getattr(settings,'DEFAULT_FROM_EMAIL', None),
+                                            [value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
+                                            [],
+                                            reply_to=[],
+                                            #headers={'Message-ID': 'foo'},
+                                            )
+                    email_obj.content_subtype = 'html'
+                    email_obj.mixed_subtype = 'related'
+                    logo_item = MIMEImage(open(self.prev_snapshot.screenshot.path, 'rb').read(), _subtype='png')
+                    logo_item.add_header('Content-ID', '<{}>'.format(self.prev_snapshot.screenshot))
+                    email_obj.attach(logo_item)
+                    image = MIMEImage(self.snapshot_obj.screenshot.read())
+                    image.add_header('Content-ID', '<{}>'.format(self.snapshot_obj.screenshot))
+                    email_obj.attach(image)
+                    email_obj.send()
+
+                    """
                     send_mail(subject="Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),# Subject here'
                               message='message is in html not plain, something wrong',
-                              html_message=disarm_urls_in_text(message_verbose),#self.generate_diff_file(),#Here is the message
+                              html_message=disarm_urls_in_text(message_verbose),#self.generate_diff_file(), #Here is the message
                               from_email=getattr(settings,'DEFAULT_FROM_EMAIL', None), # From
                               recipient_list=[value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],
                               fail_silently=not settings.DEBUG)
+                    """
+
 
 
     # main function - backend

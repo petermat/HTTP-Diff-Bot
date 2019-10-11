@@ -93,15 +93,17 @@ class Harvester:
         for url_suggested in self.targeturls_list:
             slug_name = slugify(url_suggested.lstrip("https").lstrip("http"))
 
-            # resolve domain name to IP (including subdomain)
+            # resolve domain name to IP (including sub-domain)
             urlex_obj = tldextract.extract(url_suggested)
+
             try:
                 resolved_ip = gethostbyname('.'.join([urlex_obj.subdomain,urlex_obj.domain,urlex_obj.suffix]).strip('.'))
                 logger.debug("[Harvester] DEBUG: IP Address resolved to {0} for: {1}".format(resolved_ip,url_suggested))
-
             except gaierror:
                 resolved_ip = None
                 logger.warning("[Harvester]  * WARNING: IP Address not resolved for: {}".format(url_suggested))
+
+            filename = None
 
             if resolved_ip:
                 try:
@@ -119,20 +121,62 @@ class Harvester:
 
                         logger.debug("[Harvester] DEBUG: Redirections followed for: {}".format(url_suggested))
                     else:
-                        http_status_first,redirected_url = None, None
+                        http_status_first, redirected_url = None, None
                         logger.debug("[Harvester] DEBUG: No redirection followed for {}".format(url_suggested))
 
                     http_status_last = response.status_code
                     html_content = response.text
+
+
+                # Screenshot if code if 2xx
+                #if 199 < int(http_status_last or 0) < 300:
+                if html_content:
+                    from selenium import webdriver
+                    from selenium.webdriver.chrome.options import Options
+                    import time, uuid
+
+                    chrome_options = Options()
+                    chrome_options.add_argument("--headless")
+                    chrome_options.add_argument("--window-size=800x1280")
+                    chrome_options.add_argument("--disable-dev-shm-usage")
+                    chrome_options.add_argument("--no-sandbox")
+                    chrome_options.add_argument('--disable-gpu')
+
+                    chrome_options.set_capability("acceptInsecureCerts", True)
+                    #chrome_options.add_argument('--window-size=1280x800')
+                    chrome_options.add_argument('--allow-running-insecure-content')
+                    chrome_options.add_argument('--ignore-certificate-errors')
+                    chrome_options.add_argument('--disable-setuid-sandbox')
+                    chrome_options.add_argument("--disable-extensions")
+
+                    driver = webdriver.Chrome(
+                                executable_path=settings.CHROMEDRIVER_PATH,
+                                chrome_options=chrome_options
+                       )
+
+                    if redirected_url:
+                        driver.get(redirected_url)
+                    else:
+                        driver.get(url_suggested)
+
+                    time.sleep(10)
+
+                    filename = str(uuid.uuid4()) + '.png'
+                    filename = os.path.join('screenshots', filename)
+                    driver.save_screenshot(os.path.join(settings.MEDIA_ROOT,
+                                                        'screenshots', filename))
+                    driver.quit()
+
+
             else:
                 http_status_first, http_status_last, redirected_url, html_content = None, None, None, None
 
 
-
             # save snapshot metadata
-            snapshot_obj=Snapshot(watchurl=self.watchUrl_obj,my_ipaddr=my_ipaddr,my_location=my_location,
+            snapshot_obj=Snapshot(watchurl=self.watchUrl_obj, my_ipaddr=my_ipaddr, my_location=my_location,
                      access_url=url_suggested,
                      resolved_ip=resolved_ip,
+                     screenshot=filename,
                      http_status_first=http_status_first,
                      http_status_last=http_status_last,
                      redirected_url=redirected_url,

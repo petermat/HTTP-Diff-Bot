@@ -8,6 +8,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 SECRET_KEY = ""
 
+CHROME_PATH = '/usr/bin/chromium-browser'
+CHROMEDRIVER_PATH = '/home/soc/HTTP-Diff-Bot/chromedriver'
+
+
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

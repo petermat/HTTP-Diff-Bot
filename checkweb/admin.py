@@ -34,7 +34,7 @@ admin.site.register(WatchUrl, watchUrlAdmin)
 
 
 class SnapshotAdmin(admin.ModelAdmin):
-    list_display = ('created','access_url','redirected_url','html_dump','html_dump_size_readable',
+    list_display = ('created','access_url', 'screenshot','redirected_url','html_dump','html_dump_size_readable',
                     'http_status_first','http_status_last','resolved_ip','my_ipaddr','my_location')
     list_filter= ('access_url',)
 admin.site.register(Snapshot, SnapshotAdmin)
@@ -43,7 +43,7 @@ admin.site.register(Snapshot, SnapshotAdmin)
 class AlertAdmin(admin.ModelAdmin):
     def content_diff(self, obj):
         if 'Change in content ' in obj.message_short:
-        #return '<a href="%s">%s</a>' % (obj.snapshot_current.id, "aaaa")
+        # return '<a href="%s">%s</a>' % (obj.snapshot_current.id, "aaaa")
             return format_html("<a href='../../../checkweb/content_diff?id={id2}'>{id} vs {id2}</a>",
                                id2=obj.snapshot_current.id, id=obj.snapshot_previous.id)
         else:
