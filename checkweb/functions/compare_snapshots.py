@@ -187,11 +187,11 @@ class Comparator:
                                             )
                     email_obj.content_subtype = 'html'
                     email_obj.mixed_subtype = 'related'
-                    if self.prev_snapshot.screenshot:
+                    if os.path.exists(self.prev_snapshot.screenshot.path):
                         logo_item = MIMEImage(open(self.prev_snapshot.screenshot.path, 'rb').read(), _subtype='png')
                         logo_item.add_header('Content-ID', '<{}>'.format(self.prev_snapshot.screenshot))
                         email_obj.attach(logo_item)
-                    if self.snapshot_obj.screenshot:
+                    if os.path.exists(self.snapshot_obj.screenshot.path):
                         image = MIMEImage(self.snapshot_obj.screenshot.read())
                         image.add_header('Content-ID', '<{}>'.format(self.snapshot_obj.screenshot))
                         email_obj.attach(image)
