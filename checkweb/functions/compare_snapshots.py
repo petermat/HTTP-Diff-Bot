@@ -200,7 +200,7 @@ class Comparator:
                             html_message +='<td><small>'
                             for v2 in v:
                                 html_message +='<tr><td>'+ disarm_urls_in_text(v2)+ '</td></tr>'
-                            html_message +='</small></td>'
+                            html_message +='</small></td></tr>'
                     html_message += '</table>'
 
                     # HTML DIFF
