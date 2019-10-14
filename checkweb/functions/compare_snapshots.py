@@ -167,17 +167,47 @@ class Comparator:
 
             if self.snapshot_obj.watchurl.active_email_alert:
                 if raise_email_alert:
-
-                    html_message =  """ <table>
+                    # SCREENSHOTS
+                    html_message =  """ <h1>Screenshots</h1>
+                                        <table>
                                             <tr><th>Previous screenshot</th><th>Current Screenshot</th><tr>
                                             <tr><IMG width="500" SRC="cid:{}" alt="previous screenshot"><td></td>
                                             <td><IMG width="500" SRC="cid:{}" alt="current screenshot"></td></tr>
                                         </table>
                                     """.format(self.prev_snapshot.screenshot, self.snapshot_obj.screenshot)
+
+                    # NOTES
+                    html_message += """<h1>Notes</h1>"""
+                    if self.snapshot_obj.watchurl.notes:
+                        html_message += """
+                                        <p>{}</p>
+                                        """.format(self.snapshot_obj.watchurl.notes)
+                    else:
+                        html_message += """<p>No notes for this Domain</p>"""
+
+                    html_message += """Add note here: <a href='{0}{1}'>{0}{1}</a>""".format(
+                        settings.SITE_URL, self.snapshot_obj.watchurl.get_admin_url()
+                    )
+
+                    # IOCs
+                    from ioc_finder import find_iocs
+                    out_dict = find_iocs(str(self.snapshot_obj.html_content or ''))
+                    html_message += '<h1>IOCs<h1>'
+                    html_message += '<table>'
+                    for k, v in out_dict.items():
+                        if v:
+                            html_message += '<tr><td>'+ k +'</td>'
+                            html_message +='<td><small>'
+                            for v2 in v:
+                                html_message +='<tr><td>'+ disarm_urls_in_text(v2)+ '</td></tr>'
+                            html_message +='</small></td>'
+                    html_message += '</table>'
+
+                    # HTML DIFF
                     html_message += disarm_urls_in_text(message_verbose)
 
                     from django.core.mail import EmailMessage
-                    email_obj = EmailMessage("Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),
+                    email_obj = EmailMessage("Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url) + ']: ' + disarm_urls_in_text(message_short),
                                             html_message,
                                             getattr(settings,'DEFAULT_FROM_EMAIL', None),
                                             [value['email'] for value in User.objects.filter(is_staff=True, is_active=True).values('email')],

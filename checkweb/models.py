@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import os
@@ -7,6 +8,7 @@ import os
 class WatchUrl(models.Model):
     domain = models.URLField(max_length=120,help_text='Enter domain \'example.com\' and activate URL discovery checkbox below or enter exact URL to monitor. Like https://www.example.com ')
     description = models.TextField( max_length=500,blank=True, null=True, help_text='Who requested monitor? What is the story behind?')
+    notes = models.TextField(blank=True, null=True, help_text='Add your observations. It will be send in alert for analysits to known.')
     #urls = models.URLField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -36,6 +38,12 @@ class WatchUrl(models.Model):
 
     def __str__(self):
         return self.domain
+
+    def get_absolute_url(self):
+        return reverse('checkweb:WatchUrl', kwargs={'pk': self.pk})
+
+    def get_admin_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
 
     class Meta:
         ordering = ["-created"]

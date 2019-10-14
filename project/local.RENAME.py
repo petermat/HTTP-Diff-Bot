@@ -4,6 +4,7 @@
 
 DEBUG = False
 
+SITE_URL = 'http://localhost:8000/'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 SECRET_KEY = ""
