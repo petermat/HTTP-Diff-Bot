@@ -192,7 +192,7 @@ class Comparator:
                     # IOCs
                     from ioc_finder import find_iocs
                     out_dict = find_iocs(str(self.snapshot_obj.html_content or ''))
-                    html_message += '<h1>IOCs<h1>'
+                    html_message += '<h1>IOCs</h1>'
                     html_message += '<table>'
                     for k, v in out_dict.items():
                         if v:
