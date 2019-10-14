@@ -187,15 +187,24 @@ class Comparator:
                                             )
                     email_obj.content_subtype = 'html'
                     email_obj.mixed_subtype = 'related'
-                    if os.path.exists(self.prev_snapshot.screenshot.path):
+                    try:
                         logo_item = MIMEImage(open(self.prev_snapshot.screenshot.path, 'rb').read(), _subtype='png')
                         logo_item.add_header('Content-ID', '<{}>'.format(self.prev_snapshot.screenshot))
                         email_obj.attach(logo_item)
-                    if os.path.exists(self.snapshot_obj.screenshot.path):
+                    except Exception as Err:
+                        logger.error("[ERROR] Prev. Screenshot failed to attache to email. Reason: {}".format(Err))
+
+                    try:
                         image = MIMEImage(self.snapshot_obj.screenshot.read())
                         image.add_header('Content-ID', '<{}>'.format(self.snapshot_obj.screenshot))
                         email_obj.attach(image)
-                    email_obj.send()
+                    except Exception as Err:
+                        logger.error("[ERROR] Prev. Screenshot failed to attache to email. Reason: {}".format(Err))
+
+                    try:    
+                        email_obj.send()
+                    except Exception as Err:
+                        logger.error("[ERROR] Email send failed. Reason: {}".format(Err))
 
                     """
                     send_mail(subject="Domain Monitor Alert [" + disarm_urls_in_text(self.snapshot_obj.access_url)+ ']: ' + disarm_urls_in_text(message_short),# Subject here'
