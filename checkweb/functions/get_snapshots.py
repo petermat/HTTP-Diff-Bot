@@ -162,8 +162,8 @@ class Harvester:
                     time.sleep(10)
 
                     filename = str(uuid.uuid4()) + '.png'
-                    filename = os.path.join(settings.MEDIA_ROOT,'screenshots', filename)
-                    driver.save_screenshot(filename)
+                    filenamepath = os.path.join(settings.MEDIA_ROOT,'screenshots', filename)
+                    driver.save_screenshot(filenamepath)
                     logger.info("[INFO] Screenshot taken: {}".format(filename))
                     driver.quit()
 
@@ -176,7 +176,7 @@ class Harvester:
             snapshot_obj=Snapshot(watchurl=self.watchUrl_obj, my_ipaddr=my_ipaddr, my_location=my_location,
                      access_url=url_suggested,
                      resolved_ip=resolved_ip,
-                     screenshot=filename,
+                     screenshot=os.path.join('screenshots',filename),
                      http_status_first=http_status_first,
                      http_status_last=http_status_last,
                      redirected_url=redirected_url,
