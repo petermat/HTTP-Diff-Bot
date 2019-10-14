@@ -162,11 +162,10 @@ class Harvester:
                     time.sleep(10)
 
                     filename = str(uuid.uuid4()) + '.png'
-                    filename = os.path.join('screenshots', filename)
+                    #filename = os.path.join(settings.BASE_DIR,'screenshots', filename)
                     driver.save_screenshot(os.path.join(settings.MEDIA_ROOT,
                                                         'screenshots', filename))
                     driver.quit()
-
 
             else:
                 http_status_first, http_status_last, redirected_url, html_content = None, None, None, None
