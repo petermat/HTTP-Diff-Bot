@@ -201,7 +201,7 @@ class Comparator:
                     except Exception as Err:
                         logger.error("[ERROR] Prev. Screenshot failed to attache to email. Reason: {}".format(Err))
 
-                    try:    
+                    try:
                         email_obj.send()
                     except Exception as Err:
                         logger.error("[ERROR] Email send failed. Reason: {}".format(Err))
