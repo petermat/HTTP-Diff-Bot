@@ -30,6 +30,26 @@ class Command(BaseCommand):
 
         logger.info("INFO: Runner Starting...")
 
+
+        # cleaning
+        time_threshold = timezone.now() - timezone.timedelta(days=14)
+
+        try:
+            logger.info("CleanUp! {} old alerts deleted".format(
+                Alert.objects.filter(created__gte=time_threshold).count()))
+            Alert.objects.filter(created__gte=time_threshold).delete()
+        except Exception as Err:
+            logger.error("Cleaning script on Alerts failed. Err: {}".format(Err))
+
+        try:
+            logger.info("CleanUp! {} old Snapshots deleted".format(
+                Snapshot.objects.filter(created__gte=time_threshold).count()))
+            Snapshot.objects.filter(created__gte=time_threshold).delete()
+        except Exception as Err:
+            logger.error("Cleaning script on Snapshots failed. Error:{}".format(Err))
+
+
+
         if WatchUrl.objects.filter(active_monitor=True).count() >0:
             for watch_url_obj in WatchUrl.objects.filter(active_monitor=True):
                 harvested_obj = Harvester(watch_url_obj)
@@ -43,15 +63,4 @@ class Command(BaseCommand):
             logger.warning("WARNING: No WatchURL candidates, nothing to precess. Check WatchURL table")
 
 
-        # cleaning
-        time_threshold = timezone.now() - timezone.timedelta(days=14)
 
-        try:
-            Alert.objects.filter(created__gte=time_threshold).delete()
-        except Exception as Err:
-            logger.error("Cleaning script on Alerts failed. Err: {}".format(Err))
-
-        try:
-            Snapshot.objects.filter(created__gte=time_threshold).delete()
-        except Exception as Err:
-            logger.error("Cleaning script on Snapshots failed. Error:{}".format(Err))
