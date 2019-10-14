@@ -36,14 +36,14 @@ class Command(BaseCommand):
 
         try:
             logger.info("CleanUp! {} old alerts deleted".format(
-                Alert.objects.filter(created__gte=time_threshold).count()))
+                Alert.objects.filter(created__lt=time_threshold).count()))
             Alert.objects.filter(created__lt=time_threshold).delete()
         except Exception as Err:
             logger.error("Cleaning script on Alerts failed. Err: {}".format(Err))
 
         try:
             logger.info("CleanUp! {} old Snapshots deleted".format(
-                Snapshot.objects.filter(created__gte=time_threshold).count()))
+                Snapshot.objects.filter(created__lt=time_threshold).count()))
             Snapshot.objects.filter(created__lt=time_threshold).delete()
         except Exception as Err:
             logger.error("Cleaning script on Snapshots failed. Error:{}".format(Err))
