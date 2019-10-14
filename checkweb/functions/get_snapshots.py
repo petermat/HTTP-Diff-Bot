@@ -172,11 +172,13 @@ class Harvester:
 
 
             # save snapshot metadata
+            if filename:
+                filename = os.path.join('screenshots',filename)
 
             snapshot_obj=Snapshot(watchurl=self.watchUrl_obj, my_ipaddr=my_ipaddr, my_location=my_location,
                      access_url=url_suggested,
                      resolved_ip=resolved_ip,
-                     screenshot=os.path.join('screenshots',filename),
+                     screenshot=filename,
                      http_status_first=http_status_first,
                      http_status_last=http_status_last,
                      redirected_url=redirected_url,
