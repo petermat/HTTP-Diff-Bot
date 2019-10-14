@@ -202,7 +202,8 @@ class Comparator:
                             html_message_part += '<tr><td><h2>'+ k +'</h2></td>'
                             html_message_part +='<td><small>'
                             for v2 in v:
-                                html_message_part +='<tr><td>'+ disarm_urls_in_text(v2).replace('[.]','.').replace('.','[.]')+ '</td></tr>'
+                                if '<script' not in v2:
+                                    html_message_part +='<tr><td>'+ disarm_urls_in_text(v2).replace('[.]','.').replace('.','[.]')+ '</td></tr>'
                             html_message_part +='</small></td></tr>'
                     html_message_part += '</table>'
 
