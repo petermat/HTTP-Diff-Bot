@@ -108,7 +108,7 @@ Initial database structure
 	`python manage.py migrate`
 
 
-(Production only) Allown writing to DB
+(Production only) Allow writing to DB
 	`setfacl -m u:www-data:rwx /home/user/website`
 	`sudo setfacl -m u:www-data:rw /home/user/website/db.sqlite3db.sqlite3`
 
