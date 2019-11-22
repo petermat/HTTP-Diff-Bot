@@ -177,4 +177,7 @@ LOGGING = {
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
 
-from .local import *
+try:
+    from .local import *
+except Exception as Err:
+    print("ERROR: LOCAL SETTINGS MISSING")
