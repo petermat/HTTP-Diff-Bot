@@ -5,10 +5,7 @@ services:
     restart: on-failure
     env_file:
       - ./.env
-    command:
-      - gunicorn --bind 0.0.0.0:8080 project.wsgi
-      - python3 HTTP-Diff-Bot/manage.py makemigrations checkweb
-      - python3 HTTP-Diff-Bot/manage.py migrate
+    command: gunicorn --bind 0.0.0.0:8080 project.wsgi
     ports:
       - "8080:8080"
     depends_on:
