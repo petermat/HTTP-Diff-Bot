@@ -21,6 +21,7 @@ RUN gem install diff-lcs
 RUN mkdir /www
 WORKDIR /www
 COPY requirements_docker.txt /www/
+COPY project/local.py /www/project/local.py
 RUN pip3 install -r requirements_docker.txt
 
 ENV PYTHONUNBUFFERED 1
