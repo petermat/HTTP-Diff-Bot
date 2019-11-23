@@ -13,15 +13,15 @@ RUN apt update && apt install -y \
     python3-dev \
     python3-pip  \
     ruby \
-    rubygems \
-    gunicorn
+    rubygems
+    #gunicorn
 
 RUN gem install diff-lcs
 
 RUN mkdir /www
 WORKDIR /www
 COPY requirements.txt /www/
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements_docker.txt
 
 ENV PYTHONUNBUFFERED 1
 
