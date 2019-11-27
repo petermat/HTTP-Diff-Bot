@@ -3,7 +3,7 @@ from checkweb.models import *
 from django.utils import timezone
 from django.conf import settings
 from django.utils.text import slugify
-import io, os, json
+import io, os, json, re
 from socket import gethostbyname, gaierror, setdefaulttimeout
 from random import choice
 import ipaddress
@@ -57,10 +57,9 @@ class Harvester:
 
         # return all combination of URLs
         if self.watchUrl_obj.active_discover_urls:
-            # todo discover URLs and create snapshot for every one of them
-            base_domain = self.watchUrl_obj.domain.replace('http://','').replace('https://','').lstrip('www.')
-
-
+            #base_domain = self.watchUrl_obj.domain.replace('http://','').replace('https://','').lstrip('www.')
+            base_domain = re.sub(r'(^https?://)(www.)?','',self.watchUrl_obj.domain)
+            base_domain = base_domain.rstrip('/')
             self.targeturls_list =  ['http://' + base_domain,'https://' + base_domain,
                     'http://www.' + base_domain,'https://www.' + base_domain]
             logger.debug("[Harvester] DEBUG: URL Discovery ACTIVE. Target list={}".format(str(self.targeturls_list)))
