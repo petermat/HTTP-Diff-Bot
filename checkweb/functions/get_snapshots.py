@@ -58,7 +58,7 @@ class Harvester:
         # return all combination of URLs
         if self.watchUrl_obj.active_discover_urls:
             #base_domain = self.watchUrl_obj.domain.replace('http://','').replace('https://','').lstrip('www.')
-            base_domain = re.sub(r'(^https?://)(www.)?','',self.watchUrl_obj.domain)
+            base_domain = re.sub(r'(^https?://)(www\.)?','',self.watchUrl_obj.domain)
             base_domain = base_domain.rstrip('/')
             self.targeturls_list =  ['http://' + base_domain,'https://' + base_domain,
                     'http://www.' + base_domain,'https://www.' + base_domain]
