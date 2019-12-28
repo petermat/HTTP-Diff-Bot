@@ -27,7 +27,7 @@ Screenshot - front-end dashboard
 
 - Install system packages
 
-	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor rubygems`
+	`sudo apt install git apache2 libapache2-mod-wsgi-py3 virtualenv sqlite3 tor rubygems snap`
 
 - Install Ruby Diff library
 
@@ -47,6 +47,14 @@ Screenshot - front-end dashboard
 	cd HTTP-Diff-Bot
 	pip install -r requirements.txt
 	```
+
+- Deploy chrome and chromedriver  
+    ```
+    sudo snap install chromium
+    wget https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip
+    unzip chromedriver_linux64.zip 
+    sudo chmod 777 chromedriver
+    ```
 
 ## Production Deployment - skip if running in debug local server mode
 
