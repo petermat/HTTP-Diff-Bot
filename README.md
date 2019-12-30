@@ -66,6 +66,7 @@ Screenshot - front-end dashboard
     
 
     ```
+    <VirtualHost *:80>
          WSGIScriptAlias / /home/<USER>/HTTP-Diff-Bot/project/wsgi.py
          WSGIDaemonProcess servername python-home=/home/<USER>/venv python-path=/home/<USER>/HTTP-Diff-Bot
          WSGIProcessGroup servername
@@ -82,7 +83,7 @@ Screenshot - front-end dashboard
          <Directory /home/<USER>/HTTP-Diff-Bot/static >
                 Require all granted
          </Directory>
-    
+    </VirtualHost>
     ```
 
 - Verify that new apache config is valid
@@ -103,7 +104,7 @@ Screenshot - front-end dashboard
 
 	`touch /home/<USER>/HTTP-Diff-Bot/debug_production.log`	
 	
-	`sudo chown www-data:www-data /home/<user>/HTTP-Diff-Bot/debug_production.log`
+	`sudo chown www-data:www-data /home/<USER>/HTTP-Diff-Bot/debug_production.log`
 
 ## Getting Started
 
@@ -116,7 +117,7 @@ Edit file `project/local.py`:
     Change SITE_URL to your local address
     Add your local address to ALLOWED_HOSTS
     Edit Email setting part
-    Add new SECRET_KEY 
+    Add new SECRET_KEY (see line below)
 
     Get new SECRET KEY by running the command:
     
