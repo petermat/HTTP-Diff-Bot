@@ -134,6 +134,8 @@ Initial database structure
 
 (Production only) Allow writing to DB
 
+    `setfacl -m u:www-data:rwx /home/peter/HTTP-Diff-Bot/`
+
 	`sudo setfacl -m u:www-data:rw /home/peter/HTTP-Diff-Bot/db.sqlite3`
 
 Create system Superuser
@@ -148,6 +150,10 @@ To fill project with test data run following:
 Application is now ready to run - try local debug mode
 
 	`python manage.py runserver`
+
+Finally, reload apache
+
+    `sudo systemctl reload apache2.service`
 
 ## Running the tests
 
