@@ -36,9 +36,10 @@ Screenshot - front-end dashboard
 - Get package
 		
 	`ssh-keygen -t rsa -b 4096`
+	
 	`ssh-add ~/.ssh/id_rsa`
 
-	`git clone git@github.com:petermat/HTTP-Diff-Bot.git` OR `git clone https://github.com/petermat/HTTP-Diff-Bot.git`
+	`git clone https://github.com/petermat/HTTP-Diff-Bot.git`
 
 - Configure Python Virtual environment
 	```
@@ -50,65 +51,80 @@ Screenshot - front-end dashboard
 
 - Deploy chrome and chromedriver  
     ```
-    sudo snap install chromium
-    wget https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip
+    sudo snap install chromium    
+    wget https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip (!always use latest version from https://chromedriver.chromium.org/)
     unzip chromedriver_linux64.zip 
     sudo chmod 777 chromedriver
     ```
 
-## Production Deployment - skip if running in debug local server mode
-
-- Always generate new SECRET_KEY!
-
-	Run command:
-
-	`python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'`
-
-	and replace SECRET_KEY value in `project/settings.py`.
+## Production Deployment
 
 
-- Reverse Apache proxy for production environment. Configure `/etc/apache2/site-available/000-default.conf`:
+- Reverse Apache proxy for production environment. Replace '<USER>' with name of your current user.
+ 
+    `nano /etc/apache2/sites-available/000-default.conf`
+    
 
-	```
+    ```
          WSGIScriptAlias / /home/<USER>/HTTP-Diff-Bot/project/wsgi.py
          WSGIDaemonProcess servername python-home=/home/<USER>/venv python-path=/home/<USER>/HTTP-Diff-Bot
          WSGIProcessGroup servername
          WSGIApplicationGroup %{GLOBAL}
-
+    
          Alias /static/ /home/<USER>/HTTP-Diff-Bot/static/
-
+    
          <Directory /home/<USER>/HTTP-Diff-Bot/project/>
                 <Files wsgi.py>
                         Require all granted
                 </Files>
          </Directory>
-
+    
          <Directory /home/<USER>/HTTP-Diff-Bot/static >
                 Require all granted
          </Directory>
+    
+    ```
 
-	```
+- Verify that new apache config is valid
+
+    `apachectl configtest`
+
 
 - Add user to www-data group
 
-	`sudo usermod -a -G www-data <myuser>`
+	`sudo usermod -a -G www-data <USER>`
 
-- Collect static files for Web Server
-
-	`python manage.py collectstatic`
 
 - add CRON entry for scheduled run
 
-	`0 */4 * * * /home/myuser/venv/bin/python /home/<USER>/manage.py runner`
+	`0 */8 * * * /home/myuser/venv/bin/python /home/<USER>/manage.py runner`
 
 - set permissions for www-data log file
 
 	`touch /home/<USER>/HTTP-Diff-Bot/debug_production.log`	
+	
 	`sudo chown www-data:www-data /home/<user>/HTTP-Diff-Bot/debug_production.log`
 
 ## Getting Started
 
 Rename file `project/local.RENAME.py` to `local.py` and edit `ALLOWED_HOSTS` and SMTP settings
+
+    `cp project/local.RENAME.py project/local.py`
+
+Edit file `project/local.py`:
+
+    Change SITE_URL to your local address
+    Add your local address to ALLOWED_HOSTS
+    Edit Email setting part
+    Add new SECRET_KEY 
+
+    Get new SECRET KEY by running the command:
+    
+    `python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'`
+
+Collect static files for Web Server
+
+	`python manage.py collectstatic`
 
 Initial database structure
 
@@ -117,8 +133,8 @@ Initial database structure
 
 
 (Production only) Allow writing to DB
-	`setfacl -m u:www-data:rwx /home/user/website`
-	`sudo setfacl -m u:www-data:rw /home/user/website/db.sqlite3db.sqlite3`
+
+	`sudo setfacl -m u:www-data:rw /home/peter/HTTP-Diff-Bot/db.sqlite3`
 
 Create system Superuser
 

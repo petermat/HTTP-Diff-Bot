@@ -23,8 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # This value is overwritten in local.py
 SECRET_KEY = 'j(2!-w)2522aibi6c9*_g+c#+eyj9b_5q^cdy_q&fsms+hua=j'
 
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
