@@ -12,7 +12,7 @@ django-extensions==2.1.6
 idna==2.8
 ioc-fanger==3.0.16
 ioc-finder==2.0.6
-ipython==7.5.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 jedi==0.13.3
 mistune==0.8.4
