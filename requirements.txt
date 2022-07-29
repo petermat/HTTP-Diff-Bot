@@ -15,7 +15,7 @@ ioc-finder==2.0.6
 ipython==7.5.0
 ipython-genutils==0.2.0
 jedi==0.13.3
-mistune==0.8.4
+mistune==2.0.3
 netaddr==0.7.19
 parso==0.4.0
 pexpect==4.7.0
